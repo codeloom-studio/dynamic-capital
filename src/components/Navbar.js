@@ -50,7 +50,14 @@ const Navbar = () => {
                     {isLoansOpen && (
                         <div className="absolute top-full left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50">
                             <ul className="flex flex-col py-2">
-                                {["Personal Loan", "Home Loan", "Car Loan", "Education Loan"].map(
+                                {[
+                                    "Home Loan",
+                                    "Loan against Property",
+                                    "Business Loan",
+                                    "Personal Loan",
+                                    "Car Loan",
+                                    "Education Loan",
+                                ].map(
                                     (loan, idx) => (
                                         <li key={idx}>
                                             <Link
@@ -139,9 +146,7 @@ const Navbar = () => {
                                     "Business Loan",
                                     "Personal Loan",
                                     "Car Loan",
-                                    "FD",
                                     "Education Loan",
-                                    "Project Finance"
                                 ].map(
                                     (loan, idx) => (
                                         <li key={idx}>

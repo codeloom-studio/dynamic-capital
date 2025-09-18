@@ -35,18 +35,18 @@ const Footer = () => {
 
                 {/* Links */}
                 <div className={`flex flex-col gap-3 ${isLoansOpen ? "block" : "hidden"} lg:flex`}>
-                    <a href="#" className="text-sm font-onest text-blue">
-                        Menu 1
-                    </a>
-                    <a href="#" className="text-sm font-onest text-blue">
-                        Menu 2
-                    </a>
-                    <a href="#" className="text-sm font-onest text-blue">
-                        Menu 3
-                    </a>
-                    <a href="#" className="text-sm font-onest text-blue">
-                        Menu 4
-                    </a>
+                    {[
+                        "Home Loan",
+                        "Loan against Property",
+                        "Business Loan",
+                        "Personal Loan",
+                        "Car Loan",
+                        "Education Loan",
+                    ].map((loan, index) => (
+                        <a key={index} href="#" className="text-sm font-onest text-blue">
+                            {loan}
+                        </a>
+                    ))}
                 </div>
             </div>
 
@@ -90,7 +90,7 @@ const Footer = () => {
                     <img src="./assets/link-l.svg" alt="LinkedIn" className="h-5" />
                 </div>
             </div>
-        </footer>
+        </footer >
     );
 };
 
