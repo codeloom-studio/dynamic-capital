@@ -133,7 +133,16 @@ const Navbar = () => {
                         </button>
                         {isLoansOpen && (
                             <ul className="flex flex-col ml-4">
-                                {["Personal Loan", "Home Loan", "Car Loan", "Education Loan"].map(
+                                {[
+                                    "Home Loan",
+                                    "Loan against Property",
+                                    "Business Loan",
+                                    "Personal Loan",
+                                    "Car Loan",
+                                    "FD",
+                                    "Education Loan",
+                                    "Project Finance"
+                                ].map(
                                     (loan, idx) => (
                                         <li key={idx}>
                                             <Link
