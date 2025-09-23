@@ -7,6 +7,7 @@ const Navbar = () => {
     const [isLoansOpen, setIsLoansOpen] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false); // ✅ mobile menu toggle
     const timeoutRef = useRef(null);
+    const [activeTab, setActiveTab] = useState("");
 
     const handleMouseEnter = () => {
         clearTimeout(timeoutRef.current);
@@ -78,31 +79,41 @@ const Navbar = () => {
                 {/* Other Nav Items */}
                 <Link
                     to="/emi-calculator"
-                    className="text-blue font-onest text-base leading-6 font-normal hover:text-gray-900"
+                    className={`font-onest text-base leading-6 font-normal ${activeTab === "emi-calculator" ? "text-lightBlue" : "text-blue hover:text-gray-900"
+                        }`}
+                    onClick={() => setActiveTab("emi-calculator")}
                 >
                     Loan Calculator
                 </Link>
                 <Link
                     to="/loan-eligibility"
-                    className="text-blue font-onest text-base leading-6 font-normal hover:text-gray-900"
+                    className={`font-onest text-base leading-6 font-normal ${activeTab === "loan-eligibility" ? "text-lightBlue" : "text-blue hover:text-gray-900"
+                        }`}
+                    onClick={() => setActiveTab("loan-eligibility")}
                 >
                     Current Interest Rates
                 </Link>
                 <Link
                     to="/blog"
-                    className="text-blue font-onest text-base leading-6 font-normal hover:text-gray-900"
+                    className={`font-onest text-base leading-6 font-normal ${activeTab === "blog" ? "text-lightBlue" : "text-blue hover:text-gray-900"
+                        }`}
+                    onClick={() => setActiveTab("blog")}
                 >
                     Blog
                 </Link>
                 <Link
                     to="/about"
-                    className="text-blue font-onest text-base leading-6 font-normal hover:text-gray-900"
+                    className={`font-onest text-base leading-6 font-normal ${activeTab === "about" ? "text-lightBlue" : "text-blue hover:text-gray-900"
+                        }`}
+                    onClick={() => setActiveTab("about")}
                 >
                     About Us
                 </Link>
                 <Link
                     to="/career"
-                    className="text-blue font-onest text-base leading-6 font-normal hover:text-gray-900"
+                    className={`font-onest text-base leading-6 font-normal ${activeTab === "career" ? "text-lightBlue" : "text-blue hover:text-gray-900"
+                        }`}
+                    onClick={() => setActiveTab("career")}
                 >
                     Career
                 </Link>
