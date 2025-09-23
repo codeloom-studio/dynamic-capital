@@ -20,7 +20,7 @@ function App() {
       {/* Page content changes */}
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/loan" element={<LoanPage />} />
+        <Route path="/loan/:id" element={<LoanPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/about" element={<AboutUsPage />} />
         <Route path="/career" element={<CareerPage />} />

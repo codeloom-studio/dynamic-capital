@@ -9,7 +9,7 @@ const HeroSection = () => {
             <div className="w-full md:w-1/2 flex flex-col gap-4 md:gap-6">
                 <h1 className="text-3xl sm:text-4xl lg:text-[64px] font-onest leading-snug md:leading-[120%] font-semibold text-white">
                     Compare Best{" "}
-                    <span className="text-3xl sm:text-4xl lg:text-[64px] font-inter font-bold text-lightBlue italic">
+                    <span className="text-3xl sm:text-4xl lg:text-[64px] font-taviraj font-bold text-lightBlue italic">
                         Loan Offer
                     </span>{" "}
                     with Lowest Interest Rate
