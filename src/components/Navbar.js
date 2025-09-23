@@ -151,7 +151,7 @@ const Navbar = () => {
                                     (loan, idx) => (
                                         <li key={idx}>
                                             <Link
-                                                to="/loan"
+                                                to={`/loan/${idx + 1}`}
                                                 className="block py-2 text-sm font-inter text-gray-700 hover:text-gray-900"
                                                 onClick={() => {
                                                     setIsLoansOpen(false);
