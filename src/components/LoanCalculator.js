@@ -92,7 +92,19 @@ const LoanCalculator = () => {
                             type="number"
                             placeholder="Enter Loan Amount"
                             value={loanAmount}
-                            onChange={(e) => setLoanAmount(e.target.value)}
+                            onChange={(e) => {
+                                const val = e.target.value;
+
+                                if (val === "") {
+                                    setLoanAmount("");
+                                } else {
+                                    const num = Number(val);
+                                    if (num > 0) {
+                                        setLoanAmount(val);
+                                    }
+                                }
+                            }}
+
                             className="w-full border rounded px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-200"
                         />
 
@@ -102,7 +114,19 @@ const LoanCalculator = () => {
                                 type="number"
                                 placeholder="Enter Interest Rate"
                                 value={interestRate}
-                                onChange={(e) => setInterestRate(e.target.value)}
+                                onChange={(e) => {
+                                    const val = e.target.value;
+
+                                    if (val === "") {
+                                        setInterestRate("");
+                                    } else {
+                                        const num = Number(val);
+                                        if (num > 0) {
+                                            setInterestRate(val);
+                                        }
+                                    }
+                                }}
+
                                 className="w-full border rounded px-3 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-blue-200"
                             />
                             <span className="absolute inset-y-0 right-3 flex items-center text-gray-700">%</span>

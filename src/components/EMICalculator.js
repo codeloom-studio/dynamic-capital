@@ -58,7 +58,18 @@ const EMICalculator = () => {
                         <input
                             type="number"
                             value={loanAmount}
-                            onChange={(e) => setLoanAmount(Number(e.target.value))}
+                            onChange={(e) => {
+                                const val = e.target.value;
+                                if (val === "") {
+                                    setLoanAmount("");
+                                } else {
+                                    const num = Number(val);
+                                    if (num > 0) {
+                                        setLoanAmount(num);
+                                    }
+                                }
+                            }}
+
                             className="w-full border rounded-md px-3 py-2 mb-4 text-sm"
                         />
 
@@ -66,10 +77,21 @@ const EMICalculator = () => {
                         <input
                             type="number"
                             value={loanTerm}
-                            onChange={(e) => setLoanTerm(Number(e.target.value))}
+                            onChange={(e) => {
+                                const val = e.target.value;
+                                if (val === "") {
+                                    setLoanTerm("");
+                                } else {
+                                    const num = Number(val);
+                                    if (num > 0) {
+                                        setLoanTerm(num);
+                                    }
+                                }
+                            }}
+
                             className="w-full border rounded-md px-3 py-2 mb-2 text-sm"
                         />
-                        <div className="flex gap-4 mb-4 text-xs md:text-sm">
+                        {/* <div className="flex gap-4 mb-4 text-xs md:text-sm">
                             <label className="flex items-center gap-1">
                                 <input type="radio" name="term" disabled />
                                 Months
@@ -78,14 +100,25 @@ const EMICalculator = () => {
                                 <input type="radio" name="term" defaultChecked />
                                 Years
                             </label>
-                        </div>
+                        </div> */}
 
                         <label className="block font-bold text-sm mb-2">Interest rate</label>
                         <div className="flex items-center border rounded-md px-3 py-2 mb-4 text-sm">
                             <input
                                 type="number"
                                 value={interestRate}
-                                onChange={(e) => setInterestRate(Number(e.target.value))}
+                                onChange={(e) => {
+                                    const val = e.target.value;
+                                    if (val === "") {
+                                        setInterestRate("");
+                                    } else {
+                                        const num = Number(val);
+                                        if (num > 0) {
+                                            setInterestRate(num);
+                                        }
+                                    }
+                                }}
+
                                 className="w-full outline-none"
                             />
                             <span className="text-gray-600">%</span>
