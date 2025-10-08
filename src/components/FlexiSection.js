@@ -2,6 +2,15 @@ import React from 'react'
 import Button from './Button'
 
 const FlexiSection = ({ title, subtitle, description, image }) => {
+
+    const scrollToLoanForm = () => {
+        // Scroll down by the viewport height to reach the next section
+        window.scrollBy({
+            top: window.innerHeight,
+            behavior: 'smooth'
+        });
+    };
+
     return (
         <section className="w-full h-[705px] relative">
             <img
@@ -22,7 +31,7 @@ const FlexiSection = ({ title, subtitle, description, image }) => {
                 <p className='text-blue text-base'>
                     {description}
                 </p>
-                <Button label="Apply Now" bgColor='blue' />
+                <Button label="Apply Now" bgColor='blue' onClick={scrollToLoanForm} />
             </div>
         </section>
     )
