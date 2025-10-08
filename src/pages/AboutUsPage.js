@@ -48,18 +48,18 @@ const AboutUsPage = () => {
             {/* Team Section */}
             <section className="max-w-6xl mx-auto mt-12">
                 <h2 className="text-2xl md:text-3xl font-onest font-bold text-blue text-center mb-8">Meet Our Team</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">
                     <div className="bg-white rounded-lg shadow-md p-4 text-center">
-                        <img src="./assets/team1.svg" alt="Team Member" className="mx-auto h-32 mb-3 rounded-full" />
-                        <h4 className="text-blue font-onest font-semibold">Puja Sharma</h4>
+                        <img src="./assets/team1.jpeg" alt="Team Member" className="mx-auto h-32 mb-3 rounded-full" />
+                        <h4 className="text-blue font-onest font-semibold">Sujit Yadav</h4>
                         <p className="text-darkGrey text-sm font-onest">Founder & CEO</p>
                     </div>
                     <div className="bg-white rounded-lg shadow-md p-4 text-center">
-                        <img src="./assets/team2.svg" alt="Team Member" className="mx-auto h-32 mb-3 rounded-full" />
-                        <h4 className="text-blue font-onest font-semibold">Manish Sharma</h4>
+                        <img src="./assets/team2.jpg" alt="Team Member" className="mx-auto h-32 mb-3 rounded-full" />
+                        <h4 className="text-blue font-onest font-semibold">Nitin Kumbhare</h4>
                         <p className="text-darkGrey text-sm font-onest">COO</p>
                     </div>
-                    <div className="bg-white rounded-lg shadow-md p-4 text-center">
+                    {/* <div className="bg-white rounded-lg shadow-md p-4 text-center">
                         <img src="./assets/team3.svg" alt="Team Member" className="mx-auto h-32 mb-3 rounded-full" />
                         <h4 className="text-blue font-onest font-semibold">Gaytri Patel</h4>
                         <p className="text-darkGrey text-sm font-onest">Head of Operations</p>
@@ -68,7 +68,7 @@ const AboutUsPage = () => {
                         <img src="./assets/team4.svg" alt="Team Member" className="mx-auto h-32 mb-3 rounded-full" />
                         <h4 className="text-blue font-onest font-semibold">Rohit Kumar</h4>
                         <p className="text-darkGrey text-sm font-onest">Finance Lead</p>
-                    </div>
+                    </div> */}
                 </div>
             </section>
         </div>

@@ -1,7 +1,13 @@
 import React from 'react'
 import Button from './Button'
+import { useNavigate } from 'react-router-dom';
 
 const LoanProcess = () => {
+    const navigate = useNavigate();
+
+    const redirect = () => {
+        navigate('/contact-us');
+    }
     return (
         <section className="w-full bg-offWhite flex flex-col items-center justify-center text-center px-6 sm:px-10 md:px-20 py-12 md:py-20 gap-8 md:gap-12">
 
@@ -70,7 +76,7 @@ const LoanProcess = () => {
                     ))}
 
                     <div className="w-full flex justify-center md:justify-start">
-                        <Button label="Apply Now" />
+                        <Button label="Apply Now" onClick={redirect} />
                     </div>
                 </div>
             </div>
@@ -93,7 +99,7 @@ const LoanProcess = () => {
                     </div>
                 </div>
                 <div className="flex justify-center md:justify-end w-full md:w-auto">
-                    <Button label="Contact Us" border={true} text="blue" bgColor="white" />
+                    <Button label="Contact Us" border={true} text="blue" bgColor="white" onClick={redirect} />
                 </div>
             </div>
         </section>

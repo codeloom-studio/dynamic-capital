@@ -7,10 +7,16 @@ import {
     Legend,
 } from "chart.js";
 import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const EMICalculator = () => {
+    const navigate = useNavigate();
+
+    const redirect = () => {
+        navigate('/contact-us');
+    }
     const [loanAmount, setLoanAmount] = useState(2500000);
     const [loanTerm, setLoanTerm] = useState(20); // years
     const [interestRate, setInterestRate] = useState(10.5);
@@ -192,7 +198,7 @@ const EMICalculator = () => {
                             </ul>
                         </div>
                     </div>
-                    <Button label="Contact Us" border={true} bgColor="white" text="blue" />
+                    <Button label="Contact Us" border={true} bgColor="white" text="blue" onClick={redirect} />
                 </div>
             </div>
         </section>

@@ -1,7 +1,13 @@
 import React from 'react'
 import Button from './Button'
+import { useNavigate } from 'react-router-dom'
 
 const HeroSection = () => {
+    const navigate = useNavigate();
+
+    const redirect = () => {
+        navigate('/contact-us');
+    }
     return (
         <section className="w-full bg-blue flex flex-col-reverse md:flex-row items-center justify-between px-6 sm:px-10 md:px-20 lg:px-28 py-12 md:py-20 gap-8 md:gap-6 text-center md:text-left">
 
@@ -20,7 +26,7 @@ const HeroSection = () => {
                     doorstep for a smooth, stress-free experience.
                 </p>
                 <div className="flex justify-center md:justify-start">
-                    <Button label="Apply Now" />
+                    <Button label="Apply Now" onClick={redirect} />
                 </div>
             </div>
 

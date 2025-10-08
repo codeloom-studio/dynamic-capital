@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import Button from "./Button";
 import { FaChevronDown } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+    const navigate = useNavigate();
+
+    const redirect = () => {
+        navigate('/contact-us');
+    }
     const [isLoansOpen, setIsLoansOpen] = useState(false);
     const [isLinksOpen, setIsLinksOpen] = useState(false);
 
@@ -16,7 +22,7 @@ const Footer = () => {
                 <p className="text-xs font-onest text-blue">
                     Office no. H206, 2nd Floor, BRSCCL Towert no. 3, CBD BelapurStation, Navi Mumbai- 400614
                 </p>
-                <Button label="Contact Us" bgColor="blue" />
+                <Button label="Contact Us" bgColor="blue" onClick={redirect} />
             </div>
 
             {/* Loans */}
