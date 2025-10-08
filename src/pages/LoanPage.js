@@ -1,6 +1,7 @@
 import React from 'react'
 import FlexiSection from '../components/FlexiSection'
 import LoanForm from '../components/LoanForm'
+import SEO from '../components/SEO'
 import { useParams } from "react-router-dom";
 
 const flexiData = [
@@ -64,8 +65,17 @@ const LoanPage = () => {
     const { id } = useParams(); // get id from URL
     const product = flexiData.find((item) => item.id === id) || flexiData[0];
 
+    const seoTitle = `${product.loanType} - Quick Approval & Competitive Rates | Dynamic Capital`;
+    const seoDescription = `${product.description.substring(0, 150)}... Apply for ${product.loanType} with Dynamic Capital.`;
+
     return (
         <>
+            <SEO
+                title={seoTitle}
+                description={seoDescription}
+                keywords={`${product.loanType.toLowerCase()}, ${product.loanType.toLowerCase().replace(' ', '-')}, loan application, financial services, dynamic capital`}
+                url={window.location.href}
+            />
             <FlexiSection
                 title={product.title}
                 subtitle={product.subtitle}

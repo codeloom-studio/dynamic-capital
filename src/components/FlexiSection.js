@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from './Button'
+import OptimizedImage from './OptimizedImage'
 
 const FlexiSection = ({ title, subtitle, description, image }) => {
 
@@ -13,11 +14,11 @@ const FlexiSection = ({ title, subtitle, description, image }) => {
 
     return (
         <section className="w-full h-[705px] relative">
-            <img
+            <OptimizedImage
                 src={image}
-                alt="Flexi Section"
+                alt={`${subtitle} - Dynamic Capital Financial Services`}
                 className="w-full h-full object-cover"
-                loading="lazy"
+                priority={true}
             />
             <div className="absolute top-[40vh] left-[30vw] transform -translate-x-1/2 -translate-y-1/2 w-1/2 bg-white flex flex-col justify-center items-left text-left p-8 gap-6 rounded-lg">
                 <h2

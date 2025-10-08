@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from "./Button";
+import OptimizedImage from "./OptimizedImage";
 import { FaChevronDown } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +17,7 @@ const Footer = () => {
         <footer className="w-full bg-white text-blue px-6 md:px-12 lg:px-20 py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.25fr,1fr,1fr,1fr] gap-10">
             {/* Contact + Info */}
             <div className="flex flex-col items-start gap-3">
-                <img src="./assets/logo.svg" alt="Logo" className="h-10" />
+                <OptimizedImage src="./assets/logo.svg" alt="Dynamic Capital Logo" className="h-10" />
                 <p className="text-2xl md:text-[32px] font-onest text-blue">82910-71621</p>
                 <p className="text-xs font-onest text-blue">dynamiccapitaladv@gmail.com</p>
                 <p className="text-xs font-onest text-blue">

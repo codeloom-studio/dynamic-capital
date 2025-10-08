@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from './Button'
+import OptimizedImage from './OptimizedImage'
 import { useNavigate } from 'react-router-dom'
 
 const HeroSection = () => {
@@ -32,10 +33,11 @@ const HeroSection = () => {
 
             {/* Right Image */}
             <div className="w-full md:w-1/2 flex justify-center">
-                <img
+                <OptimizedImage
                     src="./assets/hero-image.svg"
-                    alt="Hero"
+                    alt="Dynamic Capital - Financial Solutions Hero Image"
                     className="w-3/4 sm:w-2/3 md:w-full max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-5xl"
+                    priority={true}
                 />
             </div>
         </section>

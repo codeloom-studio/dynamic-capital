@@ -1,3 +1,19 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+
+# Disallow admin or sensitive areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+
+# Allow all images
+Allow: /assets/
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.svg$
+Allow: /*.gif$
+
+# Sitemap location
+Sitemap: https://dynamic-capital.com/sitemap.xml
