@@ -21,7 +21,7 @@ const Footer = () => {
                 <p className="text-2xl md:text-[32px] font-onest text-blue">82910-71621</p>
                 <p className="text-xs font-onest text-blue">dynamiccapitaladv@gmail.com</p>
                 <p className="text-xs font-onest text-blue">
-                    Office no. H206, 2nd Floor, BRSCCL Towert no. 3, CBD BelapurStation, Navi Mumbai- 400614
+                    Office no. H-206, 2nd Floor, BRSCCL Tower no. 3, CBD Belapur Station, Navi Mumbai- 400614
                 </p>
                 <Button label="Contact Us" bgColor="blue" onClick={redirect} />
             </div>
