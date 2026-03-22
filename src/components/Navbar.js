@@ -93,14 +93,14 @@ const Navbar = () => {
                 >
                     Current Interest Rates
                 </Link>
-                <Link
+                {/* <Link
                     to="/blog"
                     className={`font-onest text-base leading-6 font-normal ${activeTab === "blog" ? "text-lightBlue" : "text-blue hover:text-gray-900"
                         }`}
                     onClick={() => setActiveTab("blog")}
                 >
                     Blog
-                </Link>
+                </Link> */}
                 <Link
                     to="/about"
                     className={`font-onest text-base leading-6 font-normal ${activeTab === "about" ? "text-lightBlue" : "text-blue hover:text-gray-900"
@@ -109,14 +109,14 @@ const Navbar = () => {
                 >
                     About Us
                 </Link>
-                <Link
+                {/* <Link
                     to="/career"
                     className={`font-onest text-base leading-6 font-normal ${activeTab === "career" ? "text-lightBlue" : "text-blue hover:text-gray-900"
                         }`}
                     onClick={() => setActiveTab("career")}
                 >
                     Career
-                </Link>
+                </Link> */}
             </div>
 
             {/* Desktop Contact Us Button */}
@@ -193,13 +193,13 @@ const Navbar = () => {
                     >
                         Current Interest Rates
                     </Link>
-                    <Link
+                    {/* <Link
                         to="/blog"
                         className="py-2 text-blue font-onest hover:text-gray-900"
                         onClick={() => setIsMenuOpen(false)}
                     >
                         Blog
-                    </Link>
+                    </Link> */}
                     <Link
                         to="/about"
                         className="py-2 text-blue font-onest hover:text-gray-900"
@@ -207,13 +207,13 @@ const Navbar = () => {
                     >
                         About Us
                     </Link>
-                    <Link
+                    {/* <Link
                         to="/career"
                         className="py-2 text-blue font-onest hover:text-gray-900"
                         onClick={() => setIsMenuOpen(false)}
                     >
                         Career
-                    </Link>
+                    </Link> */}
 
                     {/* Mobile Contact Us Button */}
                     <div className="mt-4">

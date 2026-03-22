@@ -34,9 +34,9 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/loan/:id" element={<LoanPage />} />
-          <Route path="/blog" element={<BlogPage />} />
+          {/* <Route path="/blog" element={<BlogPage />} /> */}
           <Route path="/about" element={<AboutUsPage />} />
-          <Route path="/career" element={<CareerPage />} />
+          {/* <Route path="/career" element={<CareerPage />} /> */}
           <Route path="/emi-calculator" element={<EMICalculatorPage />} />
           <Route path="/loan-eligibility" element={<LoanEligibilityForm />} />
           <Route path="/contact-us" element={<ContactUsPage />} />

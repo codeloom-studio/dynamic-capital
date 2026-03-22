@@ -23,7 +23,7 @@ const HomePage = () => {
                 <Usp />
                 <EMICalculator />
                 <ReviewSection />
-                <BlogSection />
+                {/* <BlogSection /> */}
                 <LogoSection />
             </div>
         </>
