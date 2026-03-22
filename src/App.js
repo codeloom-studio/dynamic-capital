@@ -9,8 +9,8 @@ import LoanPage from "./pages/LoanPage";
 import EMICalculatorPage from "./pages/EMICalculatorPage";
 import ContactUsPage from "./pages/ContactUsPage";
 import LoanEligibilityForm from "./components/LoanEligibilityForm";
-import BlogPage from "./pages/BlogPage";
-import CareerPage from "./pages/CareerPage";
+// import BlogPage from "./pages/BlogPage";
+// import CareerPage from "./pages/CareerPage";
 import AboutUsPage from "./pages/AboutUsPage";
 import { preloadCriticalImages } from "./utils/imagePreloader";
 
