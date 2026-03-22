@@ -31,7 +31,7 @@ const BlogPage = () => {
     ];
 
     return (
-        <div className="w-full bg-dullBlue min-h-screen">
+        <div className="scroll-animate w-full bg-dullBlue min-h-screen">
             <BlogSection />
         </div>
     );

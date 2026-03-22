@@ -2,7 +2,7 @@ import React from 'react'
 
 const Usp = () => {
     return (
-        <div className="bg-blue grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center items-stretch text-center mx-auto px-6 sm:px-12 md:px-20 lg:px-28 py-10 md:py-16 gap-8">
+        <div className="scroll-animate bg-blue grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center items-stretch text-center mx-auto px-6 sm:px-12 md:px-20 lg:px-28 py-10 md:py-16 gap-8">
 
             {/* USP 1 */}
             <div className="flex flex-col items-start justify-start text-left px-4 sm:px-6 py-6 md:py-10 gap-4 bg-blue/10 rounded-lg hover:bg-blue/20 transition">

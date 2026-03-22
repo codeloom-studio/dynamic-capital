@@ -2,7 +2,7 @@ import React from "react";
 
 const AboutUsPage = () => {
     return (
-        <div className="bg-dullBlue min-h-screen px-4 py-16">
+        <div className="scroll-animate bg-dullBlue min-h-screen px-4 py-16">
             {/* Hero Section */}
             <section className="max-w-6xl mx-auto bg-white rounded-lg shadow-md p-8 text-center md:text-left flex flex-col md:flex-row items-center gap-8">
                 <div className="md:w-1/2">

@@ -73,14 +73,14 @@ const Footer = () => {
 
                 {/* Links */}
                 <div className={`flex flex-col gap-3 ${isLinksOpen ? "block" : "hidden"} lg:flex`}>
-                    <a href="#" className="text-sm font-onest text-blue">
-                        Menu 1
+                    <a href="/about" className="text-sm font-onest text-blue">
+                        About Us
                     </a>
-                    <a href="#" className="text-sm font-onest text-blue">
-                        Menu 2
+                    <a href="/loan-eligibility" className="text-sm font-onest text-blue">
+                        Current Interest Rates
                     </a>
-                    <a href="#" className="text-sm font-onest text-blue">
-                        Menu 3
+                    <a href="/emi-calculator" className="text-sm font-onest text-blue">
+                        Loan Calculator
                     </a>
                     <a href="#" className="text-sm font-onest text-blue">
                         Menu 4

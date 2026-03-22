@@ -30,7 +30,7 @@ const CareerPage = () => {
     ];
 
     return (
-        <div className="w-full bg-dullBlue min-h-screen py-16 px-6">
+        <div className="scroll-animate w-full bg-dullBlue min-h-screen py-16 px-6">
             {/* Hero Section */}
             <div className="max-w-5xl mx-auto text-center mb-12">
                 <h1 className="text-[32px] md:text-[40px] font-onest font-bold text-blue mb-3">

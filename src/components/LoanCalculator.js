@@ -82,7 +82,7 @@ const LoanCalculator = () => {
     };
 
     return (
-        <div className="w-full min-h-screen bg-gray-50 px-4 md:px-8 lg:px-16 py-8">
+        <div className="scroll-animate w-full min-h-screen bg-gray-50 px-4 md:px-8 lg:px-16 py-8">
             <div className="max-w-[1200px] mx-auto flex flex-col lg:flex-row gap-8">
                 {/* Left form */}
                 <aside className="w-full lg:w-1/3">
