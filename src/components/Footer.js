@@ -82,9 +82,6 @@ const Footer = () => {
                     <a href="/emi-calculator" className="text-sm font-onest text-blue">
                         Loan Calculator
                     </a>
-                    <a href="#" className="text-sm font-onest text-blue">
-                        Menu 4
-                    </a>
                 </div>
             </div>
 
