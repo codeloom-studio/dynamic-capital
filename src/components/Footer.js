@@ -43,15 +43,15 @@ const Footer = () => {
                 {/* Links */}
                 <div className={`flex flex-col gap-3 ${isLoansOpen ? "block" : "hidden"} lg:flex`}>
                     {[
-                        "Home Loan",
-                        "Loan against Property",
-                        "Business Loan",
-                        "Personal Loan",
-                        "Car Loan",
-                        "Education Loan",
+                        { label: "Home Loan", href: "/loan/1" },
+                        { label: "Loan against Property", href: "/loan/2" },
+                        { label: "Business Loan", href: "/loan/3" },
+                        { label: "Personal Loan", href: "/loan/4" },
+                        { label: "Car Loan", href: "/loan/5" },
+                        { label: "Education Loan", href: "/loan/6" },
                     ].map((loan, index) => (
-                        <a key={index} href="#" className="text-sm font-onest text-blue">
-                            {loan}
+                        <a key={index} href={loan.href} className="text-sm font-onest text-blue">
+                            {loan.label}
                         </a>
                     ))}
                 </div>

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Phone, Mail } from "lucide-react"; // you can replace with your own icons
 
 const ContactUs = () => {
     const [formData, setFormData] = useState({
