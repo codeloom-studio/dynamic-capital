@@ -33,7 +33,7 @@ const reviews = [
 
 const ReviewSection = () => {
     return (
-        <div className='scroll-animate w-full bg-dullBlue px-6 md:px-36 py-16 flex flex-col items-center justify-center'>
+        <div className='w-full bg-dullBlue px-6 md:px-36 py-16 flex flex-col items-center justify-center'>
             <h1 className='font-onest text-blue font-semibold text-3xl text-center mb-10'>
                 What our <span className='text-lightBlue italic'>Happy Borrowers</span> say
             </h1>

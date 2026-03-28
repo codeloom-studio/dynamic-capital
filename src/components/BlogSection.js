@@ -3,7 +3,7 @@ import BlogCard from './BlogCard'
 
 const BlogSection = () => {
     return (
-        <div className='scroll-animate w-full py-10'>
+        <div className='w-full py-10'>
             <h1 className='font-taviraj text-blue font-semibold text-3xl text-center mb-6'><span className='italic text-lightBlue'>Our Blog</span> your Guide to Smarter Finance</h1>
             <p className='text-[15px] text-blue leading-[130%] font-onest font-normal text-center max-2xl:px-10 px-20 mb-20'>Stay updated with the latest tips, trends, and insights on loans, interest rates, and financial planning.</p>
 

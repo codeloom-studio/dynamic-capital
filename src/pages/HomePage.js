@@ -17,7 +17,7 @@ const HomePage = () => {
                 keywords="personal loans, home loans, car loans, business loans, education loans, financial services, loan approval, competitive rates, navi mumbai, mumbai loans"
                 url={window.location.href}
             />
-            <div className="scroll-animate w-full">
+            <div className="w-full">
                 <HeroSection />
                 <LoanProcess />
                 <Usp />

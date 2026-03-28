@@ -63,7 +63,7 @@ const ContactUs = () => {
         }
     };
     return (
-        <div className="scroll-animate bg-dullBlue flex justify-center items-center py-36 px-4 ">
+        <div className="bg-dullBlue flex justify-center items-center py-36 px-4 ">
             <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-6xl flex flex-col md:flex-row gap-8">
 
                 {/* Left Side - Form */}
