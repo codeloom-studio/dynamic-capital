@@ -13,6 +13,7 @@ import LoanEligibilityForm from "./components/LoanEligibilityForm";
 // import CareerPage from "./pages/CareerPage";
 import AboutUsPage from "./pages/AboutUsPage";
 import { preloadCriticalImages } from "./utils/imagePreloader";
+import { FaWhatsapp } from 'react-icons/fa';
 
 function App() {
   useEffect(() => {
@@ -44,6 +45,11 @@ function App() {
 
         {/* Footer stays always */}
         <Footer />
+
+        {/* Floating WhatsApp Icon */}
+        <a href="https://wa.me/8291071621" target="_blank" rel="noopener noreferrer" className="fixed bottom-8 right-8 bg-green text-white p-3 rounded-full shadow-lg hover:bg-green-600 transition-colors z-50">
+          <FaWhatsapp size={24} />
+        </a>
       </Router>
     </HelmetProvider>
   );

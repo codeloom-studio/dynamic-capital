@@ -1,8 +1,65 @@
 import React, { useState } from "react";
 import Button from "./Button";
 import OptimizedImage from "./OptimizedImage";
-import { FaChevronDown } from "react-icons/fa";
+import { FaChevronDown, FaPhone, FaEnvelope } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+
+const flexiData = [
+    {
+        id: "home-loan",
+        title: "Easy, Affordable, <span class='italic text-lightBlue font-taviraj'>Stress Free</span> Home Loans",
+        subtitle: "home loan service",
+        loanType: "Home Loan",
+        description:
+            "Turn your dream home into reality with quick approvals, simple documentation, and competitive interest rates. Whether you're buying your first house, upgrading to a bigger space, or refinancing, our home loans are designed to make your journey smooth and worry-free.",
+        image: "/assets/home-loan-hero.svg",
+    },
+    {
+        id: "loan-against-property",
+        title: "Unlock the <span class='italic text-lightBlue font-taviraj'>Value of Your </span> with Ease",
+        subtitle: "Loan Against Property service",
+        loanType: "Loan Against Property",
+        description:
+            "Get access to high-value funds by leveraging your residential or commercial property. Enjoy quick approvals, minimal paperwork, and attractive interest rates. Whether it's for business expansion, education, or personal needs, our Loan Against Property helps you achieve your goals without selling your asset.",
+        image: "/assets/loan-against-property-hero.svg",
+    },
+    {
+        id: "business-loan",
+        title: "Fast, Flexible, and <span class='italic text-lightBlue font-taviraj'>Hassle-Free</span> Funding",
+        subtitle: "business loan service",
+        loanType: "Business Loan",
+        description:
+            "Get the capital you need to grow with quick approvals, minimal paperwork, and low interest rates. Whether you're expanding, upgrading equipment, or boosting working capital, our business loans are designed to keep your vision moving forward.",
+        image: "/assets/business-loan-hero.svg",
+    },
+    {
+        id: "personal-loan",
+        title: "Quick, Simple, and Stress Free <span class='italic text-lightBlue font-taviraj'>Personal Loans</span>",
+        subtitle: "Personal Loan service",
+        loanType: "Personal Loan",
+        description:
+            "Get instant access to funds for any need — from travel and weddings to medical expenses and home upgrades. Enjoy fast approvals, minimal documentation, and flexible repayment options, so you can focus on what matters most without financial worries.",
+        image: "/assets/personal-loan-hero.svg",
+    },
+    {
+        id: "car-loan",
+        title: "Drive Home <span class='italic text-lightBlue font-taviraj'>Your Dream Car</span>, Hassle Free",
+        subtitle: "Car Loan service",
+        loanType: "Car Loan",
+        description:
+            "Own the car you've always wanted with quick approvals, easy documentation, and attractive interest rates. Whether it's a new or pre-owned car, our flexible repayment options make your journey smooth and affordable.",
+        image: "/assets/car-loan-hero.svg",
+    },
+    {
+        id: "education-loan",
+        title: "Invest in Your Future with <span class='italic text-lightBlue font-taviraj'>Easy Education Loans</span>",
+        subtitle: "Education Loan service",
+        loanType: "Education Loan",
+        description:
+            "Pursue your dreams without financial stress. Get quick approvals, minimal paperwork, and flexible repayment options to fund your higher education, professional courses, or skill development programs — in India or abroad.",
+        image: "/assets/education-loan-hero.svg",
+    },
+];
 
 const Footer = () => {
     const navigate = useNavigate();
@@ -18,8 +75,14 @@ const Footer = () => {
             {/* Contact + Info */}
             <div className="flex flex-col items-start gap-3">
                 <OptimizedImage src="./assets/logo.svg" alt="Dynamic Capital Logo" className="h-10" />
-                <p className="text-2xl md:text-[32px] font-onest text-blue">82910-71621</p>
-                <p className="text-xs font-onest text-blue">dynamiccapitaladv@gmail.com</p>
+                <a href="tel:82910-71621" className="flex items-center gap-2">
+                    <FaPhone className="text-blue" />
+                    <span className="text-2xl md:text-[32px] font-onest text-blue">82910-71621</span>
+                </a>
+                <a href="mailto:dynamiccapitaladv@gmail.com" className="flex items-center gap-2">
+                    <FaEnvelope className="text-blue" />
+                    <span className="text-xs font-onest text-blue">dynamiccapitaladv@gmail.com</span>
+                </a>
                 <p className="text-xs font-onest text-blue">
                     Office no. H-206, 2nd Floor, BRSCCL Tower no. 3, CBD Belapur Station, Navi Mumbai- 400614
                 </p>
@@ -42,16 +105,9 @@ const Footer = () => {
 
                 {/* Links */}
                 <div className={`flex flex-col gap-3 ${isLoansOpen ? "block" : "hidden"} lg:flex`}>
-                    {[
-                        { label: "Home Loan", href: "/loan/1" },
-                        { label: "Loan against Property", href: "/loan/2" },
-                        { label: "Business Loan", href: "/loan/3" },
-                        { label: "Personal Loan", href: "/loan/4" },
-                        { label: "Car Loan", href: "/loan/5" },
-                        { label: "Education Loan", href: "/loan/6" },
-                    ].map((loan, index) => (
-                        <a key={index} href={loan.href} className="text-sm font-onest text-blue">
-                            {loan.label}
+                    {flexiData.map((loan) => (
+                        <a key={loan.id} href={`/loan/${loan.id}`} className="text-sm font-onest text-blue">
+                            {loan.loanType}
                         </a>
                     ))}
                 </div>

@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 
 const flexiData = [
     {
-        id: "1",
+        id: "home-loan",
         title: "Easy, Affordable, <span class='italic text-lightBlue font-taviraj'>Stress Free</span> Home Loans",
         subtitle: "home loan service",
         loanType: "Home Loan",
@@ -15,7 +15,7 @@ const flexiData = [
         image: "/assets/home-loan-hero.svg",
     },
     {
-        id: "2",
+        id: "loan-against-property",
         title: "Unlock the <span class='italic text-lightBlue font-taviraj'>Value of Your </span> with Ease",
         subtitle: "Loan Against Property service",
         loanType: "Loan Against Property",
@@ -24,7 +24,7 @@ const flexiData = [
         image: "/assets/loan-against-property-hero.svg",
     },
     {
-        id: "3",
+        id: "business-loan",
         title: "Fast, Flexible, and <span class='italic text-lightBlue font-taviraj'>Hassle-Free</span> Funding",
         subtitle: "business loan service",
         loanType: "Business Loan",
@@ -33,7 +33,7 @@ const flexiData = [
         image: "/assets/business-loan-hero.svg",
     },
     {
-        id: "4",
+        id: "personal-loan",
         title: "Quick, Simple, and Stress Free <span class='italic text-lightBlue font-taviraj'>Personal Loans</span>",
         subtitle: "Personal Loan service",
         loanType: "Personal Loan",
@@ -42,7 +42,7 @@ const flexiData = [
         image: "/assets/personal-loan-hero.svg",
     },
     {
-        id: "5",
+        id: "car-loan",
         title: "Drive Home <span class='italic text-lightBlue font-taviraj'>Your Dream Car</span>, Hassle Free",
         subtitle: "Car Loan service",
         loanType: "Car Loan",
@@ -51,7 +51,7 @@ const flexiData = [
         image: "/assets/car-loan-hero.svg",
     },
     {
-        id: "6",
+        id: "education-loan",
         title: "Invest in Your Future with <span class='italic text-lightBlue font-taviraj'>Easy Education Loans</span>",
         subtitle: "Education Loan service",
         loanType: "Education Loan",
