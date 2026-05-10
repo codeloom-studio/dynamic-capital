@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 const BlogCard = () => {
     return (
         <div className='flex flex-col justify-center rounded-lg items-center gap-3 bg-white max-w-[360px]'>
