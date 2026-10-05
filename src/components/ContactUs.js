@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaInstagram } from "react-icons/fa";
 
 const ContactUs = () => {
     const [formData, setFormData] = useState({
@@ -202,9 +203,15 @@ const ContactUs = () => {
 
                     {/* Social Icons */}
                     <div className='flex items-center gap-3'>
-                        <img src="./assets/link-f.svg" alt="Facebook" className='h-6' />
-                        <img src="./assets/link-x.svg" alt="Twitter" className='h-6' />
-                        <img src="./assets/link-l.svg" alt="LinkedIn" className='h-6' />
+                        <a href="https://www.facebook.com/share/18eALyWcfE/" target="_blank" rel="noreferrer" aria-label="Facebook">
+                            <img src="./assets/link-f.svg" alt="" className='h-6' />
+                        </a>
+                        <a href="https://www.instagram.com/dynamiccapital.in" target="_blank" rel="noreferrer" aria-label="Instagram">
+                            <FaInstagram className="h-6 w-6 text-blue" aria-hidden="true" />
+                        </a>
+                        <a href="https://www.linkedin.com/company/dynamic-capital-advisor-pvt-ltd/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                            <img src="./assets/link-l.svg" alt="" className='h-6' />
+                        </a>
                     </div>
                 </div>
             </div>

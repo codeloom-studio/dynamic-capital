@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "./Button";
 import OptimizedImage from "./OptimizedImage";
-import { FaChevronDown, FaPhone, FaEnvelope } from "react-icons/fa";
+import { FaChevronDown, FaPhone, FaEnvelope, FaInstagram } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const flexiData = [
@@ -145,9 +145,15 @@ const Footer = () => {
             <div className="flex flex-col gap-3 items-start">
                 <h3 className="font-onest font-normal text-lightBlue text-xs mb-2">SOCIAL</h3>
                 <div className="flex items-center gap-3">
-                    <img src="./assets/link-f.svg" alt="Facebook" className="h-5" />
-                    <img src="./assets/link-x.svg" alt="Twitter" className="h-5" />
-                    <img src="./assets/link-l.svg" alt="LinkedIn" className="h-5" />
+                    <a href="https://www.facebook.com/share/18eALyWcfE/" target="_blank" rel="noreferrer" aria-label="Facebook">
+                        <img src="./assets/link-f.svg" alt="" className="h-5" />
+                    </a>
+                    <a href="https://www.instagram.com/dynamiccapital.in" target="_blank" rel="noreferrer" aria-label="Instagram">
+                        <FaInstagram className="h-5 w-5 text-blue" aria-hidden="true" />
+                    </a>
+                    <a href="https://www.linkedin.com/company/dynamic-capital-advisor-pvt-ltd/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                        <img src="./assets/link-l.svg" alt="" className="h-5" />
+                    </a>
                 </div>
             </div>
         </footer >
