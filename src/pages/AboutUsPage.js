@@ -37,6 +37,22 @@ const AboutUsPage = () => {
                     </p>
                 </section>
 
+                <section className="max-w-6xl mx-auto bg-white rounded-lg shadow-md p-8 mt-12" aria-labelledby="about-loans-heading">
+                    <h2 id="about-loans-heading" className="text-2xl md:text-3xl font-onest font-bold text-blue mb-4">Our Loan Solutions</h2>
+                    <p className="text-darkGrey font-onest leading-7 mb-6">We help customers explore personal loans, home loans, car loans, business loans, education loans and loan against property options.</p>
+                    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                        {[
+                            ['Personal Loan', '/loan/personal-loan'],
+                            ['Home Loan', '/loan/home-loan'],
+                            ['Car Loan', '/loan/car-loan'],
+                            ['Business Loan', '/loan/business-loan'],
+                            ['Education Loan', '/loan/education-loan'],
+                            ['Loan Against Property', '/loan/loan-against-property']
+                        ].map(([label, href]) => <a key={href} href={href} className="font-onest font-semibold text-blue underline hover:text-lightBlue">{label}</a>)}
+                    </div>
+                    <a href="/contact-us" className="mt-6 inline-block font-onest font-semibold text-lightBlue underline">Contact Us</a>
+                </section>
+
                 {/* Mission & Vision */}
                 <section className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
                     <div className="bg-white rounded-lg shadow-md p-8">

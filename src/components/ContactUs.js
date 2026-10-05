@@ -200,6 +200,10 @@ const ContactUs = () => {
                                 <img src="./assets/mail.svg" alt="Mail Icon" className="w-5 h-5 text-blue-600" /> dynamiccapitaladv@gmail.com
                             </div>
                         </div>
+                        <div className="mt-8 flex flex-wrap gap-x-4 gap-y-2 text-sm font-onest">
+                            <a href="/about" className="font-semibold text-lightBlue underline">About Dynamic Capital</a>
+                            <a href="/emi-calculator" className="font-semibold text-lightBlue underline">EMI calculator</a>
+                        </div>
                     </div>
 
                     {/* Social Icons */}

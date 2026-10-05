@@ -156,9 +156,15 @@ const LoanCalculator = () => {
                 {/* Right content */}
                 <main className="w-full lg:w-2/3">
                     <div className="bg-white rounded shadow p-6">
-                        <h1 className="text-3xl font-semibold text-blue">EMI Calculator</h1>
+                        <h1 className="text-3xl font-semibold text-blue">Loan EMI Calculator</h1>
                         <p className="text-darkGrey text-base mt-3">
                             Enter your loan details to calculate monthly EMI, total interest payable, and overall loan cost.
+                        </p>
+                        <p className="text-darkGrey text-sm mt-3 leading-6">
+                            EMI stands for Equated Monthly Instalment. It is the fixed amount paid each month towards principal and interest. EMI depends on the loan amount, interest rate and tenure.
+                        </p>
+                        <p className="text-darkGrey text-sm mt-2 leading-6">
+                            EMI = [P × R × (1 + R)^N] ÷ [(1 + R)^N − 1], where P is the principal, R is the monthly interest rate and N is the number of monthly instalments.
                         </p>
 
                         {emiData && (

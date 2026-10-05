@@ -6,10 +6,11 @@ const ContactUsPage = () => {
     return (
         <>
             <SEO
-                title="Contact Us - Dynamic Capital | Get in Touch for Financial Solutions"
-                description="Contact Dynamic Capital for all your loan and financial service needs. Located in Navi Mumbai. Call us at 82910-71621 or email dynamiccapitaladv@gmail.com"
+                title="Contact Dynamic Capital | Loan Enquiries"
+                description="Contact Dynamic Capital for loan enquiries and eligibility questions. Call, email or send us a message and our team will get back to you."
                 keywords="contact dynamic capital, financial services contact, loan inquiry, navi mumbai financial services"
                 url={window.location.href}
+                breadcrumbName="Contact Dynamic Capital"
             />
             <ContactUs />
         </>

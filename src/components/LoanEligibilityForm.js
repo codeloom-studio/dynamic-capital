@@ -10,12 +10,12 @@ const LoanEligibilityForm = () => {
                 description="Check your loan eligibility with Dynamic Capital and understand the documents and loan options available for your requirements."
                 keywords="loan eligibility check, loan eligibility calculator, loan application, Dynamic Capital"
                 url={window.location.href}
+                breadcrumbName="Check Your Loan Eligibility"
             />
             <section className="w-full h-screen bg-dullBlue py-16 flex flex-col items-center">
                 {/* Heading */}
                 <h1 className="text-[32px] font-onest font-semibold text-blue text-center mb-10 leading-[100%]">
-                    Loan Eligibility{" "}
-                    <span className="text-lightBlue font-taviraj italic">Calculator</span>
+                    Check Your Loan <span className="text-lightBlue font-taviraj italic">Eligibility</span>
                 </h1>
 
                 {/* Form Card */}
@@ -102,6 +102,9 @@ const LoanEligibilityForm = () => {
                         </div>
                     </form>
                 </div>
+                <p className="mt-6 max-w-2xl text-center font-onest text-sm leading-6 text-blue">
+                    Enter your income, existing EMI, tenure and interest rate to understand your potential loan eligibility. You can also use the <a href="/emi-calculator" className="font-semibold text-lightBlue underline">EMI calculator</a> to estimate monthly repayments.
+                </p>
             </section>
         </>
     );

@@ -10,12 +10,13 @@ const SEO = ({
     image = `${SITE_URL}/assets/logo.svg`,
     url = window.location.href,
     type = 'website',
-    schemaData = null
+    schemaData = null,
+    breadcrumbName = null
 }) => {
     const currentUrl = new URL(url, SITE_URL);
     const canonicalUrl = `${SITE_URL}${currentUrl.pathname === '/' ? '/' : currentUrl.pathname.replace(/\/$/, '')}`;
     const imageUrl = image.startsWith('http') ? image : `${SITE_URL}${image.startsWith('/') ? image : `/${image}`}`;
-    const structuredData = schemaData || {
+    const businessSchema = {
         "@context": "https://schema.org",
         "@type": "FinancialService",
         "@id": `${canonicalUrl}#organization`,
@@ -51,6 +52,24 @@ const SEO = ({
             "Loan Against Property"
         ]
     };
+    const breadcrumbSegments = currentUrl.pathname.split('/').filter(Boolean);
+    const breadcrumbSchema = {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": `${SITE_URL}/` },
+            ...breadcrumbSegments.map((segment, index) => ({
+                "@type": "ListItem",
+                "position": index + 2,
+                "name": index === breadcrumbSegments.length - 1 && breadcrumbName
+                    ? breadcrumbName
+                    : segment.split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+                "item": `${SITE_URL}/${breadcrumbSegments.slice(0, index + 1).join('/')}`
+            }))
+        ]
+    };
+    const structuredData = schemaData
+        ? { ...schemaData, "@graph": [...(schemaData["@graph"] || [schemaData]), breadcrumbSchema] }
+        : { "@context": "https://schema.org", "@graph": [businessSchema, breadcrumbSchema] };
 
     return (
         <Helmet>

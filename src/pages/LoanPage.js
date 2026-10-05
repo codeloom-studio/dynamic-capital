@@ -2,6 +2,7 @@ import React from 'react'
 import FlexiSection from '../components/FlexiSection'
 import LoanForm from '../components/LoanForm'
 import SEO from '../components/SEO'
+import LoanGuide from '../components/LoanGuide'
 import { useParams } from "react-router-dom";
 
 const flexiData = [
@@ -126,7 +127,9 @@ const LoanPage = () => {
     const product = flexiData.find((item) => item.id === id) || flexiData[0];
     const faqs = faqData[product.id];
 
-    const seoTitle = `${product.loanType} Options & Eligibility | Dynamic Capital`;
+    const seoTitle = product.id === "loan-against-property"
+        ? "Loan Against Property: Eligibility | Dynamic Capital"
+        : `${product.loanType} Options & Eligibility | Dynamic Capital`;
     const seoDescription = `Explore ${product.loanType.toLowerCase()} options from Dynamic Capital. See eligibility, documents required and how to apply.`;
     const organizationSchema = {
         "@context": "https://schema.org",
@@ -159,6 +162,7 @@ const LoanPage = () => {
                 description={seoDescription}
                 keywords={`${product.loanType.toLowerCase()}, ${product.loanType.toLowerCase().replace(' ', '-')}, loan application, financial services, dynamic capital`}
                 url={window.location.href}
+                breadcrumbName={product.loanType}
                 schemaData={organizationSchema}
             />
             <FlexiSection
@@ -166,6 +170,7 @@ const LoanPage = () => {
                 subtitle={product.subtitle}
                 description={product.description}
                 image={product.image} />
+            <LoanGuide loanType={product.loanType} loanId={product.id} />
             <LoanForm loanType={product.loanType} />
             <LoanFaqs loanType={product.loanType} items={faqs} />
         </>
