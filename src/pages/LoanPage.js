@@ -65,8 +65,8 @@ const LoanPage = () => {
     const { id } = useParams(); // get id from URL
     const product = flexiData.find((item) => item.id === id) || flexiData[0];
 
-    const seoTitle = `${product.loanType} - Quick Approval & Competitive Rates | Dynamic Capital`;
-    const seoDescription = `${product.description.substring(0, 150)}... Apply for ${product.loanType} with Dynamic Capital.`;
+    const seoTitle = `${product.loanType} Options & Eligibility | Dynamic Capital`;
+    const seoDescription = `Explore ${product.loanType.toLowerCase()} options from Dynamic Capital. See eligibility, documents required and how to apply.`;
 
     return (
         <>

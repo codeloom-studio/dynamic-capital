@@ -1,22 +1,28 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
+const SITE_URL = 'https://www.dynamiccapital.in';
+
 const SEO = ({
     title = 'Dynamic Capital - Your Trusted Financial Partner',
     description = 'Dynamic Capital offers comprehensive financial solutions including personal loans, home loans, car loans, business loans, and education loans with quick approvals and competitive rates.',
     keywords = 'loans, personal loan, home loan, car loan, business loan, education loan, financial services, dynamic capital, loan approval, competitive rates',
-    image = `${window.location.origin}/assets/logo.svg`,
+    image = `${SITE_URL}/assets/logo.svg`,
     url = window.location.href,
     type = 'website',
     schemaData = null
 }) => {
+    const currentUrl = new URL(url, SITE_URL);
+    const canonicalUrl = `${SITE_URL}${currentUrl.pathname === '/' ? '/' : currentUrl.pathname.replace(/\/$/, '')}`;
+    const imageUrl = image.startsWith('http') ? image : `${SITE_URL}${image.startsWith('/') ? image : `/${image}`}`;
     const structuredData = schemaData || {
         "@context": "https://schema.org",
         "@type": "FinancialService",
+        "@id": `${canonicalUrl}#organization`,
         "name": "Dynamic Capital",
         "description": description,
-        "url": url,
-        "logo": `${window.location.origin}/assets/logo.svg`,
+        "url": canonicalUrl,
+        "logo": `${SITE_URL}/assets/logo.svg`,
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "Office no. H206, 2nd Floor, BRSCCL Tower no. 3, CBD Belapur Station",
@@ -31,10 +37,11 @@ const SEO = ({
             "email": "dynamiccapitaladv@gmail.com"
         },
         "sameAs": [
-            "https://www.facebook.com/dynamiccapital",
-            "https://www.linkedin.com/company/dynamiccapital",
-            "https://twitter.com/dynamiccapital"
+            "https://www.facebook.com/share/18eALyWcfE/",
+            "https://www.instagram.com/dynamiccapital.in",
+            "https://www.linkedin.com/company/dynamic-capital-advisor-pvt-ltd/"
         ],
+        "areaServed": "IN",
         "serviceType": [
             "Personal Loans",
             "Home Loans",
@@ -53,14 +60,15 @@ const SEO = ({
             <meta name="keywords" content={keywords} />
             <meta name="robots" content="index, follow" />
             <meta name="author" content="Dynamic Capital" />
-            <link rel="canonical" href={url} />
+            <link rel="canonical" href={canonicalUrl} />
 
             {/* Open Graph Meta Tags */}
             <meta property="og:type" content={type} />
             <meta property="og:title" content={title} />
             <meta property="og:description" content={description} />
-            <meta property="og:image" content={image} />
-            <meta property="og:url" content={url} />
+            <meta property="og:image" content={imageUrl} />
+            <meta property="og:image:alt" content="Dynamic Capital financial services" />
+            <meta property="og:url" content={canonicalUrl} />
             <meta property="og:site_name" content="Dynamic Capital" />
             <meta property="og:locale" content="en_IN" />
 
@@ -68,8 +76,7 @@ const SEO = ({
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:title" content={title} />
             <meta name="twitter:description" content={description} />
-            <meta name="twitter:image" content={image} />
-            <meta name="twitter:site" content="@dynamiccapital" />
+            <meta name="twitter:image" content={imageUrl} />
 
             {/* Additional Meta Tags for Local Business */}
             <meta name="geo.region" content="IN-MH" />

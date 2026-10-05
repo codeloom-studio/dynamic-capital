@@ -21,7 +21,7 @@ const FlexiSection = ({ title, subtitle, description, image }) => {
                 priority={true}
             />
             <div className="absolute top-[40vh] left-[30vw] transform -translate-x-1/2 -translate-y-1/2 w-1/2 bg-white flex flex-col justify-center items-left text-left p-8 gap-6 rounded-lg">
-                <h2
+                <h1
                     className="text-6xl font-onest font-semibold text-blue mb-4"
                     dangerouslySetInnerHTML={{ __html: title }}
                 />

@@ -69,6 +69,7 @@ const ContactUs = () => {
 
                 {/* Left Side - Form */}
                 <div className="w-full md:w-1/2  pr-8">
+                    <h1 className="text-3xl font-onest font-semibold text-blue mb-6">Contact Dynamic Capital</h1>
                     {isSubmitted ? (
                         <div className="text-center py-8">
                             <div className="text-green-500 text-6xl mb-4">✓</div>

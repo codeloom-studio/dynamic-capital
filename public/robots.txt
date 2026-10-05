@@ -2,10 +2,9 @@
 User-agent: *
 Allow: /
 
-# Disallow admin or sensitive areas
+# Disallow private areas
 Disallow: /admin/
 Disallow: /private/
-Disallow: /*.json$
 
 # Allow all images
 Allow: /assets/
@@ -16,4 +15,4 @@ Allow: /*.svg$
 Allow: /*.gif$
 
 # Sitemap location
-Sitemap: https://dynamic-capital.com/sitemap.xml
+Sitemap: https://www.dynamiccapital.in/sitemap.xml
