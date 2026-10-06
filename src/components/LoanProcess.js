@@ -85,16 +85,16 @@ const LoanProcess = () => {
             <div className="max-w-6xl mx-auto mt-10 flex flex-col md:flex-row items-center md:items-start justify-between gap-6 w-full md:w-2/3">
                 <div className="flex items-center gap-4 text-left">
                     <img
-                        src="/assets/avatar.svg"
+                        src="/assets/avatar.png"
                         alt="Support"
                         className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover"
                     />
                     <div className="flex flex-col items-start justify-center">
                         <h4 className="font-onest font-semibold text-lg sm:text-xl leading-6 sm:leading-8 text-blue">
-                            Here to help if you need us
+                            Support, Whenever You Need It
                         </h4>
                         <p className="text-blue text-sm sm:text-base font-onest leading-5 sm:leading-6">
-                            Contact our IND-based team if you have any questions
+                            We’re here to make every step easier.
                         </p>
                     </div>
                 </div>
