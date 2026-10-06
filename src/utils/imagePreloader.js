@@ -22,12 +22,12 @@ export const preloadImages = (imageUrls) => {
 
 // Critical images that should be preloaded
 export const criticalImages = [
-    './assets/logo.svg',
-    './assets/hero-image.svg',
-    './assets/home-loan-hero.svg',
-    './assets/business-loan-hero.svg',
-    './assets/personal-loan-hero.svg',
-    './assets/car-loan-hero.svg'
+    '/assets/logo.svg',
+    '/assets/hero-image.svg',
+    '/assets/home-loan-hero.svg',
+    '/assets/business-loan-hero.svg',
+    '/assets/personal-loan-hero.svg',
+    '/assets/car-loan-hero.svg'
 ];
 
 // Preload critical images on app start

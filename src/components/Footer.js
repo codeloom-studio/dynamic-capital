@@ -74,7 +74,7 @@ const Footer = () => {
         <footer className="w-full bg-white text-blue px-6 md:px-12 lg:px-20 py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.25fr,1fr,1fr,1fr] gap-10">
             {/* Contact + Info */}
             <div className="flex flex-col items-start gap-3">
-                <OptimizedImage src="./assets/logo.svg" alt="Dynamic Capital Logo" className="h-10" />
+                <OptimizedImage src="/assets/logo.svg" alt="Dynamic Capital Logo" className="h-10" />
                 <a href="tel:82910-71621" className="flex items-center gap-2">
                     <FaPhone className="text-blue" />
                     <span className="text-2xl md:text-[32px] font-onest text-blue">82910-71621</span>
@@ -146,13 +146,13 @@ const Footer = () => {
                 <h3 className="font-onest font-normal text-lightBlue text-xs mb-2">SOCIAL</h3>
                 <div className="flex items-center gap-3">
                     <a href="https://www.facebook.com/share/18eALyWcfE/" target="_blank" rel="noreferrer" aria-label="Facebook">
-                        <img src="./assets/link-f.svg" alt="" className="h-5" />
+                        <img src="/assets/link-f.svg" alt="" className="h-5" />
                     </a>
                     <a href="https://www.instagram.com/dynamiccapital.in" target="_blank" rel="noreferrer" aria-label="Instagram">
                         <FaInstagram className="h-5 w-5 text-blue" aria-hidden="true" />
                     </a>
                     <a href="https://www.linkedin.com/company/dynamic-capital-advisor-pvt-ltd/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-                        <img src="./assets/link-l.svg" alt="" className="h-5" />
+                        <img src="/assets/link-l.svg" alt="" className="h-5" />
                     </a>
                 </div>
             </div>

@@ -182,7 +182,7 @@ const ContactUs = () => {
                 <div className="hidden md:flex w-full md:w-1/2 flex-col justify-between px-12 border-l border-gray-300">
                     {/* Logo + Address */}
                     <div>
-                        <img src="./assets/logo.svg" alt="Company Logo" className="h-10 mb-4" />
+                        <img src="/assets/logo.svg" alt="Company Logo" className="h-10 mb-4" />
                         <p className="text-xs font-onest text-blue  mb-20">
                             Office no. H206, 2nd Floor, BRSCCL Tower no. 3, <br />
                             CBD Belapur Station, Navi Mumbai - 400614
@@ -191,13 +191,13 @@ const ContactUs = () => {
                         {/* Contact Info */}
                         <div className="space-y-4">
                             <div className="flex items-center gap-2 text-blue font-onest font-normal text-sm">
-                                <img src="./assets/call.svg" alt="Phone Icon" className="w-5 h-5 text-blue-600" /> 82910-71621
+                                <img src="/assets/call.svg" alt="Phone Icon" className="w-5 h-5 text-blue-600" /> 82910-71621
                             </div>
                             <div className="flex items-center gap-2 text-blue font-onest font-normal text-sm">
-                                <img src="./assets/call.svg" alt="Phone Icon" className="w-5 h-5 text-blue-600" /> 82910-71621
+                                <img src="/assets/call.svg" alt="Phone Icon" className="w-5 h-5 text-blue-600" /> 82910-71621
                             </div>
                             <div className="flex items-center gap-2 text-blue font-onest font-normal text-sm">
-                                <img src="./assets/mail.svg" alt="Mail Icon" className="w-5 h-5 text-blue-600" /> dynamiccapitaladv@gmail.com
+                                <img src="/assets/mail.svg" alt="Mail Icon" className="w-5 h-5 text-blue-600" /> dynamiccapitaladv@gmail.com
                             </div>
                         </div>
                         <div className="mt-8 flex flex-wrap gap-x-4 gap-y-2 text-sm font-onest">
@@ -209,13 +209,13 @@ const ContactUs = () => {
                     {/* Social Icons */}
                     <div className='flex items-center gap-3'>
                         <a href="https://www.facebook.com/share/18eALyWcfE/" target="_blank" rel="noreferrer" aria-label="Facebook">
-                            <img src="./assets/link-f.svg" alt="" className='h-6' />
+                            <img src="/assets/link-f.svg" alt="" className='h-6' />
                         </a>
                         <a href="https://www.instagram.com/dynamiccapital.in" target="_blank" rel="noreferrer" aria-label="Instagram">
                             <FaInstagram className="h-6 w-6 text-blue" aria-hidden="true" />
                         </a>
                         <a href="https://www.linkedin.com/company/dynamic-capital-advisor-pvt-ltd/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-                            <img src="./assets/link-l.svg" alt="" className='h-6' />
+                            <img src="/assets/link-l.svg" alt="" className='h-6' />
                         </a>
                     </div>
                 </div>

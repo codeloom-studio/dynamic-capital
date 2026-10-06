@@ -8,7 +8,7 @@ const ReviewCard = ({ date, title, content }) => {
                 <div className="flex justify-between items-center">
                     {/* Stars */}
                     <div className="flex space-x-1">
-                        <img src="./assets/reviews.svg" alt="Star" className="w-15 h-5" />
+                        <img src="/assets/reviews.svg" alt="Star" className="w-15 h-5" />
                     </div>
                     {/* Date */}
                     <p className="text-gray-400 text-sm">{date}</p>

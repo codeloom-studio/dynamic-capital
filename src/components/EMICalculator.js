@@ -184,7 +184,7 @@ const EMICalculator = () => {
                 <div className="flex flex-col md:flex-row justify-between items-center gap-6 border-t px-6 md:px-8 py-6">
                     <div className="flex items-center gap-4">
                         <img
-                            src="./assets/curr-check.svg"
+                            src="/assets/curr-check.svg"
                             alt="Lowest Loan Rates"
                             className="w-12 h-12 md:w-16 md:h-16"
                         />

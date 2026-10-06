@@ -30,7 +30,7 @@ const HeroSection = () => {
             {/* Right Image */}
             <div className="w-full md:w-1/2 flex justify-center">
                 <OptimizedImage
-                    src="./assets/hero-image.svg"
+                    src="/assets/hero-image.svg"
                     alt="Dynamic Capital - Financial Solutions Hero Image"
                     className="w-3/4 sm:w-2/3 md:w-full max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-5xl"
                     priority={true}

@@ -84,7 +84,7 @@ const Navbar = () => {
         <nav className="w-full bg-white flex items-center justify-between px-6 md:px-28 py-4 shadow-md relative">
             {/* Logo */}
             <Link to="/">
-                <img src="./assets/logo.svg" alt="logo" className="h-7" />
+                <img src="/assets/logo.svg" alt="Dynamic Capital Logo" className="h-7" />
             </Link>
 
             {/* Desktop Nav Links */}

@@ -62,7 +62,7 @@ const LogoSection = () => {
                 {logos.map((logo, index) => (
                     <img
                         key={index}
-                        src={logo}
+                        src={logo.replace('./', '/')}
                         alt={`Bank Logo ${index + 1}`}
                         className="h-10 sm:h-12 md:h-14 object-contain  hover:grayscale-0 transition duration-300"
                     />

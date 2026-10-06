@@ -23,7 +23,7 @@ const AboutUsPage = () => {
                         </p>
                     </div>
                     <div className="md:w-1/2">
-                        <img src="./assets/logo.svg" alt="About Us Hero" className="w-full h-auto rounded" />
+                        <img src="/assets/logo.svg" alt="About Us Hero" className="w-full h-auto rounded" />
                     </div>
                 </section>
 
@@ -74,7 +74,7 @@ const AboutUsPage = () => {
                     <h2 className="text-2xl md:text-3xl font-onest font-bold text-blue text-center mb-8">Meet Our Team</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 gap-6">
                         <div className="bg-white rounded-lg shadow-md p-4 text-center">
-                            <img src="./assets/team1.jpeg" alt="Team Member" className="mx-auto h-32 mb-3 rounded-full" />
+                            <img src="/assets/team1.jpeg" alt="Team Member" className="mx-auto h-32 mb-3 rounded-full" />
                             <h4 className="text-blue font-onest font-semibold">Sujit Yadav</h4>
                             <p className="text-darkGrey text-sm font-onest">Founder & CEO</p>
                         </div>

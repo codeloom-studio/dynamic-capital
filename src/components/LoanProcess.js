@@ -27,7 +27,7 @@ const LoanProcess = () => {
                 <div className="flex justify-center">
                     <div className="w-56 h-56 sm:w-80 sm:h-80 md:w-[460px] md:h-[460px] rounded-full overflow-hidden relative">
                         <img
-                            src="./assets/works.svg"
+                            src="/assets/works.svg"
                             alt="Family"
                             className="w-full h-full object-cover"
                         />
@@ -85,7 +85,7 @@ const LoanProcess = () => {
             <div className="max-w-6xl mx-auto mt-10 flex flex-col md:flex-row items-center md:items-start justify-between gap-6 w-full md:w-2/3">
                 <div className="flex items-center gap-4 text-left">
                     <img
-                        src="./assets/avatar.svg"
+                        src="/assets/avatar.svg"
                         alt="Support"
                         className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover"
                     />
@@ -94,7 +94,7 @@ const LoanProcess = () => {
                             Here to help if you need us
                         </h4>
                         <p className="text-blue text-sm sm:text-base font-onest leading-5 sm:leading-6">
-                            Contact our UK-based team if you have any questions
+                            Contact our IND-based team if you have any questions
                         </p>
                     </div>
                 </div>

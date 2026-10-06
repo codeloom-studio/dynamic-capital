@@ -6,7 +6,7 @@ const Usp = () => {
 
             {/* USP 1 */}
             <div className="flex flex-col items-start justify-start text-left px-4 sm:px-6 py-6 md:py-10 gap-4 bg-blue/10 rounded-lg hover:bg-blue/20 transition">
-                <img src="./assets/curr.svg" alt="Usp1" className="w-12 h-12" />
+                <img src="/assets/curr.svg" alt="Usp1" className="w-12 h-12" />
                 <h4 className="text-lightWhite font-taviraj text-xl sm:text-2xl leading-snug font-medium">
                     Wide Range of Loan Options
                 </h4>
@@ -17,7 +17,7 @@ const Usp = () => {
 
             {/* USP 2 */}
             <div className="flex flex-col items-start justify-start text-left px-4 sm:px-6 py-6 md:py-10 gap-4 bg-blue/10 rounded-lg hover:bg-blue/20 transition">
-                <img src="./assets/star.svg" alt="Usp2" className="w-12 h-12" />
+                <img src="/assets/star.svg" alt="Usp2" className="w-12 h-12" />
                 <h4 className="text-lightWhite font-taviraj text-xl sm:text-2xl leading-snug font-medium">
                     Quick & Hassle-Free Process
                 </h4>
@@ -28,7 +28,7 @@ const Usp = () => {
 
             {/* USP 3 */}
             <div className="flex flex-col items-start justify-start text-left px-4 sm:px-6 py-6 md:py-10 gap-4 bg-blue/10 rounded-lg hover:bg-blue/20 transition">
-                <img src="./assets/sheild.svg" alt="Usp3" className="w-12 h-12" />
+                <img src="/assets/sheild.svg" alt="Usp3" className="w-12 h-12" />
                 <h4 className="text-lightWhite font-taviraj text-xl sm:text-2xl leading-snug font-medium">
                     Trusted Network of Banks
                 </h4>
