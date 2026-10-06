@@ -15,11 +15,7 @@ const HeroSection = () => {
             {/* Left Content */}
             <div className="w-full md:w-1/2 flex flex-col gap-4 md:gap-6">
                 <h1 className="text-3xl sm:text-4xl lg:text-[64px] font-onest leading-snug md:leading-[120%] font-semibold text-white">
-                    Compare Best{" "}
-                    <span className="text-3xl sm:text-4xl lg:text-[64px] font-taviraj font-bold text-lightBlue italic">
-                        Loan Offer
-                    </span>{" "}
-                    with Lowest Interest Rate
+                    Loans and Financial Solutions for Every Need
                 </h1>
                 <p className="text-sm sm:text-base md:text-[15px] text-white leading-relaxed md:leading-[150%] font-onest font-normal">
                     No need to visit banks or wait in queues — we bring loan
