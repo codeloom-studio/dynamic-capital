@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 const flexiData = [
     {
         id: "home-loan",
+        heading: "Home Loan",
         title: "Easy, Affordable, <span class='italic text-lightBlue font-taviraj'>Stress Free</span> Home Loans",
         subtitle: "home loan service",
         loanType: "Home Loan",
@@ -17,6 +18,7 @@ const flexiData = [
     },
     {
         id: "loan-against-property",
+        heading: "Loan Against Property",
         title: "Unlock the <span class='italic text-lightBlue font-taviraj'>Value of Your </span> with Ease",
         subtitle: "Loan Against Property service",
         loanType: "Loan Against Property",
@@ -26,6 +28,7 @@ const flexiData = [
     },
     {
         id: "business-loan",
+        heading: "Business Loan",
         title: "Fast, Flexible, and <span class='italic text-lightBlue font-taviraj'>Hassle-Free</span> Funding",
         subtitle: "business loan service",
         loanType: "Business Loan",
@@ -35,6 +38,7 @@ const flexiData = [
     },
     {
         id: "personal-loan",
+        heading: "Personal Loan",
         title: "Quick, Simple, and Stress Free <span class='italic text-lightBlue font-taviraj'>Personal Loans</span>",
         subtitle: "Personal Loan service",
         loanType: "Personal Loan",
@@ -44,6 +48,7 @@ const flexiData = [
     },
     {
         id: "car-loan",
+        heading: "Car Loan",
         title: "Drive Home <span class='italic text-lightBlue font-taviraj'>Your Dream Car</span>, Hassle Free",
         subtitle: "Car Loan service",
         loanType: "Car Loan",
@@ -53,6 +58,7 @@ const flexiData = [
     },
     {
         id: "education-loan",
+        heading: "Education Loan",
         title: "Invest in Your Future with <span class='italic text-lightBlue font-taviraj'>Easy Education Loans</span>",
         subtitle: "Education Loan service",
         loanType: "Education Loan",
@@ -130,7 +136,14 @@ const LoanPage = () => {
     const seoTitle = product.id === "loan-against-property"
         ? "Loan Against Property: Eligibility | Dynamic Capital"
         : `${product.loanType} Options & Eligibility | Dynamic Capital`;
-    const seoDescription = `Explore ${product.loanType.toLowerCase()} options from Dynamic Capital. See eligibility, documents required and how to apply.`;
+    const seoDescription = {
+        "personal-loan": "Explore personal loan options from Dynamic Capital for weddings, travel, medical or other needs. See eligibility, documents and how to apply.",
+        "home-loan": "Explore home loan options from Dynamic Capital to buy, build or renovate a home. See eligibility, documents required and how to apply.",
+        "car-loan": "Explore car loan options from Dynamic Capital for a new or used car. See eligibility, documents required and how to apply.",
+        "business-loan": "Explore business loan options from Dynamic Capital for working capital or expansion. See eligibility, documents required and how to apply.",
+        "education-loan": "Explore education loan options from Dynamic Capital to fund higher studies. See eligibility, documents required and how to apply.",
+        "loan-against-property": "Explore loan against property options from Dynamic Capital. Understand eligibility, documents required and how to apply. Talk to our team."
+    }[product.id];
     const organizationSchema = {
         "@context": "https://schema.org",
         "@graph": [
@@ -166,6 +179,7 @@ const LoanPage = () => {
                 schemaData={organizationSchema}
             />
             <FlexiSection
+                heading={product.heading}
                 title={product.title}
                 subtitle={product.subtitle}
                 description={product.description}

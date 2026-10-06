@@ -6,8 +6,8 @@ const EMICalculatorPage = () => {
     return (
         <>
             <SEO
-                title="EMI Calculator - Calculate Your Loan EMI | Dynamic Capital"
-                description="Calculate your monthly loan EMI, total interest and overall repayment amount with Dynamic Capital's EMI calculator."
+                title="EMI Calculator – Calculate Your Loan EMI | Dynamic Capital"
+                description="Use the Dynamic Capital EMI calculator to estimate your monthly instalment. Enter the loan amount, interest rate and tenure to plan your repayments."
                 keywords="EMI calculator, loan EMI calculator, calculate loan EMI, Dynamic Capital"
                 url={window.location.href}
                 breadcrumbName="Loan EMI Calculator"

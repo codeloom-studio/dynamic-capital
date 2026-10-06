@@ -6,7 +6,7 @@ const AboutUsPage = () => {
         <>
             <SEO
                 title="About Dynamic Capital | Loan & Financial Services"
-                description="Learn about Dynamic Capital, a Navi Mumbai financial services company helping individuals and businesses explore suitable loan options."
+                description="Learn about Dynamic Capital and how our team helps individuals and businesses explore personal, home, business and other loan options."
                 keywords="about Dynamic Capital, loan and financial services, Navi Mumbai financial company"
                 url={window.location.href}
             />

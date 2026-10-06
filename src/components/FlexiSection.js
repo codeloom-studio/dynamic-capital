@@ -2,7 +2,7 @@ import React from 'react'
 import Button from './Button'
 import OptimizedImage from './OptimizedImage'
 
-const FlexiSection = ({ title, subtitle, description, image }) => {
+const FlexiSection = ({ heading, title, subtitle, description, image }) => {
 
     const scrollToLoanForm = () => {
         // Scroll down by the viewport height to reach the next section
@@ -23,8 +23,10 @@ const FlexiSection = ({ title, subtitle, description, image }) => {
             <div className="absolute top-[40vh] left-[30vw] transform -translate-x-1/2 -translate-y-1/2 w-1/2 bg-white flex flex-col justify-center items-left text-left p-8 gap-6 rounded-lg">
                 <h1
                     className="text-6xl font-onest font-semibold text-blue mb-4"
-                    dangerouslySetInnerHTML={{ __html: title }}
-                />
+                >
+                    {heading}
+                </h1>
+                <p className="text-blue text-lg font-semibold">{title.replace(/<[^>]+>/g, '')}</p>
 
                 <p className="text-blue text-2xl">
                     Explore Our <span className='font-bold'>{subtitle}</span>

@@ -7,7 +7,7 @@ const LoanEligibilityForm = () => {
         <>
             <SEO
                 title="Loan Eligibility Check | Dynamic Capital"
-                description="Check your loan eligibility with Dynamic Capital and understand the documents and loan options available for your requirements."
+                description="Check your loan eligibility with Dynamic Capital. See what you may qualify for across personal, home, car, business and education loans."
                 keywords="loan eligibility check, loan eligibility calculator, loan application, Dynamic Capital"
                 url={window.location.href}
                 breadcrumbName="Check Your Loan Eligibility"
