@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 const SITE_URL = 'https://www.dynamiccapital.in';
@@ -70,6 +70,29 @@ const SEO = ({
     const structuredData = schemaData
         ? { ...schemaData, "@graph": [...(schemaData["@graph"] || [schemaData]), breadcrumbSchema] }
         : { "@context": "https://schema.org", "@graph": [businessSchema, breadcrumbSchema] };
+
+    useEffect(() => {
+        document.title = title;
+
+        const updateMeta = (selector, content) => {
+            const element = document.head.querySelector(selector);
+            if (element) {
+                element.setAttribute('content', content);
+            }
+        };
+
+        updateMeta('meta[name="description"]', description);
+        updateMeta('meta[property="og:title"]', title);
+        updateMeta('meta[property="og:description"]', description);
+        updateMeta('meta[property="og:url"]', canonicalUrl);
+        updateMeta('meta[name="twitter:title"]', title);
+        updateMeta('meta[name="twitter:description"]', description);
+
+        const canonical = document.head.querySelector('link[rel="canonical"]');
+        if (canonical) {
+            canonical.setAttribute('href', canonicalUrl);
+        }
+    }, [canonicalUrl, description, title]);
 
     return (
         <Helmet>
