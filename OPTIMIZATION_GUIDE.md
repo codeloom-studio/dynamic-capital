@@ -51,7 +51,7 @@
 ### OptimizedImage Component Features:
 ```javascript
 <OptimizedImage
-    src="./assets/hero-image.svg"
+    src="./assets/hero-image.png"
     alt="Dynamic Capital Hero"
     className="w-full h-full"
     priority={true}          // Load immediately

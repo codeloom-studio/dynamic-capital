@@ -23,7 +23,7 @@ export const preloadImages = (imageUrls) => {
 // Critical images that should be preloaded
 export const criticalImages = [
     '/assets/logo.svg',
-    '/assets/hero-image.svg',
+    '/assets/hero-image.png',
     '/assets/home-loan-hero.svg',
     '/assets/business-loan-hero.svg',
     '/assets/personal-loan-hero.svg',
