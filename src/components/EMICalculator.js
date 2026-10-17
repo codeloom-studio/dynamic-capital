@@ -58,7 +58,7 @@ const EMICalculator = () => {
                 <div className="grid grid-cols-1 md:grid-cols-[1fr_3fr] gap-6 p-6 md:p-8">
                     {/* Left Form */}
                     <div>
-                        <h2 className="text-lg md:text-xl font-bold font-onest leading-6 mb-6">EMI Calculator</h2>
+                        <p className="text-lg md:text-xl font-bold font-onest leading-6 mb-6">EMI Calculator</p>
 
                         <label className="block font-bold text-sm mb-2">Loan amount</label>
                         <input
@@ -135,9 +135,9 @@ const EMICalculator = () => {
 
                     {/* Right Results */}
                     <div className="bg-dullBlue rounded-md p-4 md:p-6">
-                        <h3 className="text-base md:text-lg font-semibold text-blue-900 mb-4">
+                        <p className="text-base md:text-lg font-semibold text-blue-900 mb-4">
                             Loan EMI
-                        </h3>
+                        </p>
                         {emi ? (
                             <div className="flex flex-col md:flex-row md:items-start gap-6">
                                 {/* Text values */}

@@ -12,10 +12,9 @@ const LoanProcess = () => {
         <section className="w-full bg-offWhite flex flex-col items-center justify-center text-center px-6 sm:px-10 md:px-20 py-12 md:py-20 gap-8 md:gap-12">
 
             {/* Heading */}
-            <h1 className="text-blue font-onest text-2xl sm:text-3xl md:text-[32px] leading-snug md:leading-[100%] font-semibold">
-                From application to Money in your account{" "}
-                <span className="italic text-lightBlue">here's how it works</span>
-            </h1>
+            <h2 className="text-blue font-onest text-2xl sm:text-3xl md:text-[32px] leading-snug md:leading-[100%] font-semibold">
+                Get Started in Three Steps
+            </h2>
             <p className="text-sm sm:text-base md:text-[15px] text-blue leading-relaxed md:leading-[130%] font-onest font-normal max-w-2xl">
                 Getting a loan shouldn’t feel complicated — we’ve made the process simple, fast, and transparent.
             </p>

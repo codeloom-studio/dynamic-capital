@@ -1,647 +1,90 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { FaChevronDown } from "react-icons/fa";
+
+const loanTypes = ["years", "months"];
+const inputClass = "mt-2 w-full rounded-md border border-lightGrey bg-white px-4 py-3 font-onest text-sm text-blue outline-none focus:border-lightBlue focus:ring-2 focus:ring-dullBlue";
+const selectClass = `${inputClass} appearance-none pr-12`;
+const formatCurrency = (value) => `₹${Math.round(value).toLocaleString("en-IN")}`;
+
+const faqs = [
+    ["What is an EMI?", "EMI is the fixed monthly amount you pay to repay a loan. It covers both the principal and the interest."],
+    ["How is EMI calculated?", "EMI depends on the loan amount, the interest rate and the tenure. The formula is shown on this page."],
+    ["Does a longer tenure reduce my EMI?", "Yes, a longer tenure lowers the monthly EMI, but you pay more interest over the life of the loan."],
+    ["Is the calculator result the exact EMI I will pay?", "No. It is an estimate. The lender decides the final EMI, interest rate and charges."],
+];
 
 const LoanCalculator = () => {
-    const [loanAmount, setLoanAmount] = useState("");
-    const [interestRate, setInterestRate] = useState("");
-    const [tenure, setTenure] = useState(""); // in years
-    const [emiData, setEmiData] = useState(null);
-    const [expandedYears, setExpandedYears] = useState([]);
-    const [expandAll, setExpandAll] = useState(false);
+    const [loanAmount, setLoanAmount] = useState("1000000");
+    const [interestRate, setInterestRate] = useState("10");
+    const [tenure, setTenure] = useState("5");
+    const [tenureUnit, setTenureUnit] = useState("years");
+    const [result, setResult] = useState(null);
 
-    const toggleYear = (year) => {
-        setExpandedYears((prev) => {
-            if (prev.includes(year)) return prev.filter((y) => y !== year);
-            return [...prev, year];
-        });
-    };
-
-    const toggleExpandAll = () => {
-        if (!expandAll) {
-            setExpandedYears(emiData.schedule.map((y) => y.year));
-            setExpandAll(true);
-        } else {
-            setExpandedYears([]);
-            setExpandAll(false);
-        }
-    };
-
-    const calculateEMI = () => {
-        if (!loanAmount || !interestRate || !tenure) return;
-
-        const principal = parseFloat(loanAmount);
-        const annualRate = parseFloat(interestRate);
-        const months = parseInt(tenure) * 12;
-        const monthlyRate = annualRate / 12 / 100;
-
-        // EMI formula
-        const emi =
-            (principal * monthlyRate * Math.pow(1 + monthlyRate, months)) /
-            (Math.pow(1 + monthlyRate, months) - 1);
-
-        let balance = principal;
-        let schedule = [];
-
-        for (let i = 0; i < months; i++) {
-            const interest = balance * monthlyRate;
-            const principalPaid = emi - interest;
-            balance -= principalPaid;
-
-            const monthDate = new Date();
-            monthDate.setMonth(monthDate.getMonth() + i);
-
-            const month = monthDate.toLocaleString("default", { month: "short", year: "numeric" });
-
-            // Group by year
-            const year = monthDate.getFullYear();
-            let yearData = schedule.find((y) => y.year === year);
-            if (!yearData) {
-                yearData = { year, rows: [] };
-                schedule.push(yearData);
-            }
-
-            yearData.rows.push({
-                month,
-                principal: `₹${principalPaid.toFixed(2)}`,
-                interest: `₹${interest.toFixed(2)}`,
-                balance: `₹${balance.toFixed(2)}`,
-            });
-        }
-
+    const calculateEMI = (event) => {
+        event.preventDefault();
+        const principal = Number(loanAmount);
+        const months = tenureUnit === "years" ? Number(tenure) * 12 : Number(tenure);
+        const monthlyRate = Number(interestRate) / 12 / 100;
+        if (!principal || principal < 1 || !months || months < 1 || Number(interestRate) < 0) return;
+        const emi = monthlyRate === 0 ? principal / months : principal * monthlyRate * Math.pow(1 + monthlyRate, months) / (Math.pow(1 + monthlyRate, months) - 1);
         const totalPayment = emi * months;
-        const totalInterest = totalPayment - principal;
-
-        setEmiData({
-            emi: emi.toFixed(2),
-            totalInterest: totalInterest.toFixed(2),
-            totalPayment: totalPayment.toFixed(2),
-            payoffDate: `Sep ${new Date().getFullYear() + parseInt(tenure)}`,
-            schedule,
-        });
-        setExpandedYears([]);
-        setExpandAll(false);
+        setResult({ emi, totalInterest: totalPayment - principal, totalPayment });
     };
 
     return (
-        <div className="w-full min-h-screen bg-gray-50 px-4 md:px-8 lg:px-16 py-8">
-            <div className="max-w-[1200px] mx-auto flex flex-col lg:flex-row gap-8">
-                {/* Left form */}
-                <aside className="w-full lg:w-1/3">
-                    <div className="bg-white rounded shadow p-6">
-                        <label className="block text-blue font-bold text-sm mb-3">Loan Amount</label>
-                        <input
-                            type="number"
-                            placeholder="Enter Loan Amount"
-                            value={loanAmount}
-                            onChange={(e) => {
-                                const val = e.target.value;
+        <main className="bg-lightWhite font-onest text-blue">
+            <section className="bg-dullBlue px-6 py-16 md:px-16 md:py-24">
+                <div className="mx-auto max-w-6xl">
+                    <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-lightBlue">Plan with clarity</p>
+                    <h1 className="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl">Loan EMI Calculator</h1>
+                    <p className="mt-6 max-w-3xl text-base leading-7 text-grey md:text-lg">Planning a loan? Use our EMI calculator to estimate your monthly instalment before you apply. Enter the loan amount, interest rate and tenure to see an approximate EMI, so you can plan your repayments with confidence.</p>
+                </div>
+            </section>
 
-                                if (val === "") {
-                                    setLoanAmount("");
-                                } else {
-                                    const num = Number(val);
-                                    if (num > 0) {
-                                        setLoanAmount(val);
-                                    }
-                                }
-                            }}
-
-                            className="w-full border rounded px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-200"
-                        />
-
-                        <label className="block text-blue font-bold text-sm mb-3">Interest rate</label>
-                        <div className="relative w-full mb-4">
-                            <input
-                                type="number"
-                                placeholder="Enter Interest Rate"
-                                value={interestRate}
-                                onChange={(e) => {
-                                    const val = e.target.value;
-
-                                    if (val === "") {
-                                        setInterestRate("");
-                                    } else {
-                                        const num = Number(val);
-                                        if (num > 0) {
-                                            setInterestRate(val);
-                                        }
-                                    }
-                                }}
-
-                                className="w-full border rounded px-3 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-blue-200"
-                            />
-                            <span className="absolute inset-y-0 right-3 flex items-center text-gray-700">%</span>
-                        </div>
-
-                        <label className="block text-blue font-bold text-sm mb-3">Loan tenure</label>
-                        <select
-                            value={tenure}
-                            onChange={(e) => setTenure(e.target.value)}
-                            className="w-full border rounded px-3 py-2 mb-6 focus:outline-none focus:ring-2 focus:ring-blue-200"
-                        >
-                            <option value="">Select Tenure</option>
-                            {[1, 2, 3, 4, 5, 10, 15, 20, 25, 30].map((t) => (
-                                <option key={t} value={t}>{t} years</option>
-                            ))}
-                        </select>
-
-                        <button
-                            onClick={calculateEMI}
-                            className="w-full bg-lightBlue text-white py-3 rounded hover:bg-blue-800 transition"
-                        >
-                            Calculate EMI
-                        </button>
+            <section className="mx-auto max-w-6xl px-6 py-16 md:px-16 md:py-24">
+                <h2 className="text-3xl font-semibold md:text-4xl">Calculate Your EMI</h2>
+                <div className="mt-8 grid gap-8 lg:grid-cols-[0.85fr,1.15fr]">
+                    <form onSubmit={calculateEMI} className="rounded-lg bg-white p-6 shadow-sm md:p-8">
+                        <label className="block text-sm font-semibold">Loan amount<input required type="number" min="1" value={loanAmount} onChange={(event) => setLoanAmount(event.target.value)} className={inputClass} placeholder="Enter loan amount" /></label>
+                        <label className="mt-5 block text-sm font-semibold">Interest rate (% per year)<div className="relative"><input required type="number" min="0" step="0.01" value={interestRate} onChange={(event) => setInterestRate(event.target.value)} className={`${inputClass} pr-10`} placeholder="Enter interest rate" /><span className="absolute right-4 top-1/2 mt-1 -translate-y-1/2 text-grey">%</span></div></label>
+                        <div className="mt-5 grid grid-cols-[1fr,auto] gap-3"><label className="text-sm font-semibold">Tenure<input required type="number" min="1" value={tenure} onChange={(event) => setTenure(event.target.value)} className={inputClass} /></label><label className="text-sm font-semibold">Unit<div className="relative"><select value={tenureUnit} onChange={(event) => setTenureUnit(event.target.value)} className={selectClass}>{loanTypes.map((unit) => <option key={unit}>{unit}</option>)}</select><FaChevronDown aria-hidden="true" className="pointer-events-none absolute right-4 top-1/2 mt-1 -translate-y-1/2 text-blue" size={16} /></div></label></div>
+                        <button type="submit" className="mt-8 rounded-[3px] bg-lightBlue px-8 py-4 font-inter text-[15px] font-medium text-white hover:bg-blue">Calculate EMI</button>
+                    </form>
+                    <div className="rounded-lg bg-blue p-6 text-white md:p-8">
+                        <p className="text-sm font-semibold uppercase tracking-[0.15em] text-white/70">Your estimate</p>
+                        {result ? <><div className="mt-6"><p className="text-sm text-white/70">Monthly EMI</p><p className="mt-1 text-4xl font-semibold md:text-5xl">{formatCurrency(result.emi)}</p></div><div className="mt-10 grid gap-6 border-t border-white/20 pt-6 sm:grid-cols-2"><div><p className="text-sm text-white/70">Total interest</p><p className="mt-1 text-xl font-semibold">{formatCurrency(result.totalInterest)}</p></div><div><p className="text-sm text-white/70">Total payment</p><p className="mt-1 text-xl font-semibold">{formatCurrency(result.totalPayment)}</p></div></div></> : <p className="mt-8 max-w-sm leading-7 text-white/80">Enter your loan details and calculate an estimate of your monthly repayment.</p>}
                     </div>
-                </aside>
+                </div>
+                <p className="mt-5 text-xs leading-5 text-grey">The result is an estimate for planning purposes. Actual EMI, interest rate, processing charges and terms are decided by the lender.</p>
+            </section>
 
-                {/* Right content */}
-                <main className="w-full lg:w-2/3">
-                    <div className="bg-white rounded shadow p-6">
-                        <h1 className="text-3xl font-semibold text-blue">Loan EMI Calculator</h1>
-                        <p className="text-darkGrey text-base mt-3">
-                            Enter your loan details to calculate monthly EMI, total interest payable, and overall loan cost.
-                        </p>
-                        <p className="text-darkGrey text-sm mt-3 leading-6">
-                            EMI stands for Equated Monthly Instalment. It is the fixed amount paid each month towards principal and interest. EMI depends on the loan amount, interest rate and tenure.
-                        </p>
-                        <p className="text-darkGrey text-sm mt-2 leading-6">
-                            EMI = [P × R × (1 + R)^N] ÷ [(1 + R)^N − 1], where P is the principal, R is the monthly interest rate and N is the number of monthly instalments.
-                        </p>
+            <section className="border-y border-lightGrey bg-white px-6 py-16 md:px-16 md:py-20">
+                <div className="mx-auto max-w-6xl">
+                    <h2 className="text-3xl font-semibold">What Is an EMI?</h2>
+                    <p className="mt-5 max-w-4xl leading-7 text-grey">EMI stands for Equated Monthly Instalment. It is the fixed amount you pay every month until your loan is fully repaid. Each EMI has two parts: a portion that repays the loan amount (principal) and a portion that pays the interest. In the early months a larger share goes towards interest, and over time more of each EMI goes towards the principal.</p>
+                    <h2 className="mt-14 text-3xl font-semibold">How Is EMI Calculated?</h2>
+                    <p className="mt-5 rounded-md bg-dullBlue px-5 py-4 text-lg font-semibold md:text-xl">EMI = [P × R × (1 + R)^N] ÷ [(1 + R)^N − 1]</p>
+                    <ul className="mt-6 space-y-2 leading-7 text-grey"><li><strong className="text-blue">P</strong> = loan amount (principal)</li><li><strong className="text-blue">R</strong> = monthly interest rate (annual rate ÷ 12 ÷ 100)</li><li><strong className="text-blue">N</strong> = number of monthly instalments</li></ul>
+                    <p className="mt-6 max-w-4xl leading-7 text-grey"><strong className="text-blue">Illustrative example:</strong> for a loan of ₹10,00,000 at 10% per year over 5 years (60 months), the EMI works out to about ₹21,247, and the total repayment is about ₹12,74,800. These figures are only an example to show how the calculation works. They are not an offer or a current rate.</p>
+                </div>
+            </section>
 
-                        {emiData && (
-                            <>
-                                {/* stats row */}
-                                <div className="mt-6 border-t pt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-left">
-                                    <div>
-                                        <p className="text-sm text-darkGrey font-medium mt-1">Loan EMI</p>
-                                        <p className="text-2xl font-extrabold text-blue">₹{emiData.emi}</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-sm text-darkGrey font-medium mt-1">Total interest payable</p>
-                                        <p className="text-2xl font-extrabold text-blue">₹{emiData.totalInterest}</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-sm text-darkGrey font-medium mt-1">Total cost of loan</p>
-                                        <p className="text-2xl font-extrabold text-blue">₹{emiData.totalPayment}</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-sm text-darkGrey font-medium mt-1">Payoff date</p>
-                                        <p className="text-2xl font-extrabold text-blue">{emiData.payoffDate}</p>
-                                    </div>
-                                </div>
+            <section className="mx-auto max-w-6xl px-6 py-16 md:px-16 md:py-24">
+                <h2 className="text-3xl font-semibold md:text-4xl">Factors That Affect Your EMI</h2>
+                <div className="mt-8 grid gap-6 md:grid-cols-3">{[["Loan Amount", "A higher loan amount means a higher EMI. Borrow only what you need and can repay comfortably."], ["Interest Rate", "Even a small change in the interest rate can change your EMI and the total interest you pay over the loan period."], ["Loan Tenure", "A longer tenure lowers your monthly EMI but increases the total interest paid. A shorter tenure raises the EMI but reduces total interest."]].map(([title, text]) => <article key={title} className="border-t-4 border-lightBlue bg-white p-6"><h3 className="text-xl font-semibold">{title}</h3><p className="mt-3 leading-7 text-grey">{text}</p></article>)}</div>
+                <h2 className="mt-16 text-3xl font-semibold">Short Tenure or Long Tenure?</h2>
+                <ul className="mt-6 space-y-3 leading-7 text-grey"><li><strong className="text-blue">Short tenure:</strong> higher EMI, less total interest, loan closes sooner.</li><li><strong className="text-blue">Long tenure:</strong> lower EMI, more total interest, easier on monthly cash flow.</li></ul>
+                <p className="mt-5 leading-7 text-grey">Try different tenures in the calculator to find the balance that suits your budget.</p>
+            </section>
 
-                                {/* schedule table */}
-                                <div className="mt-8 border-t pt-6">
-                                    <div className="flex items-center justify-between mb-4">
-                                        <h2 className="text-2xl font-bold text-blue">EMI Schedule</h2>
-                                        <div className="flex items-center gap-2">
-                                            <label className="text-sm font-bold text-blue">Expand all years</label>
-                                            <button
-                                                onClick={toggleExpandAll}
-                                                className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors ${expandAll ? "bg-blue-600" : "bg-gray-400"
-                                                    }`}
-                                            >
-                                                <div
-                                                    className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform ${expandAll ? "translate-x-5" : "translate-x-0"
-                                                        }`}
-                                                ></div>
-                                            </button>
-                                        </div>
-                                    </div>
+            <section className="border-y border-lightGrey bg-white px-6 py-16 md:px-16 md:py-20"><div className="mx-auto grid max-w-6xl gap-14 md:grid-cols-2"><div><h2 className="text-3xl font-semibold">Tips to Plan Your Repayments</h2><ul className="mt-6 list-disc space-y-3 pl-5 leading-7 text-grey"><li>Keep your total EMIs at a level you can manage comfortably each month.</li><li>Compare EMIs for different amounts and tenures before you decide.</li><li>Look at the total interest payable, not only the monthly EMI.</li><li>Keep some savings aside for emergencies.</li><li>Check whether the lender charges processing fees or other charges.</li></ul></div><div><h2 className="text-3xl font-semibold">Why Use an EMI Calculator Before Applying?</h2><p className="mt-5 leading-7 text-grey">An EMI calculator shows you the monthly commitment before you approach a lender. It helps you choose a realistic loan amount and tenure, avoid overborrowing and have a clearer conversation with your loan advisor.</p></div></div></section>
 
-                                    <div className="bg-white rounded overflow-hidden">
-                                        <div className="divide-y">
-                                            {emiData.schedule.map((y) => {
-                                                const isOpen = expandedYears.includes(y.year);
-                                                return (
-                                                    <div key={y.year}>
-                                                        <div
-                                                            className="flex items-center justify-between px-4 py-3 bg-gray-50 cursor-pointer"
-                                                            onClick={() => toggleYear(y.year)}
-                                                        >
-                                                            <div className="flex items-center gap-4">
-                                                                <div className="text-sm text-blue-700 font-semibold">{y.year}</div>
-                                                                <div className="text-sm text-gray-600">Year summary / total</div>
-                                                            </div>
-                                                            <div className="text-sm text-gray-700">{isOpen ? "Collapse" : "Expand"}</div>
-                                                        </div>
+            <section className="mx-auto max-w-6xl px-6 py-16 md:px-16 md:py-24"><h2 className="text-3xl font-semibold md:text-4xl">Frequently Asked Questions</h2><div className="mt-8 divide-y divide-lightGrey border-y border-lightGrey">{faqs.map(([question, answer]) => <details key={question} className="group py-5"><summary className="cursor-pointer list-none pr-8"><h3 className="inline text-lg font-semibold">{question}</h3><span className="float-right text-lightBlue group-open:rotate-45">+</span></summary><p className="mt-3 max-w-3xl leading-7 text-grey">{answer}</p></details>)}</div></section>
 
-                                                        {isOpen && (
-                                                            <div className="px-4 py-3">
-                                                                <table className="w-full text-left">
-                                                                    <thead>
-                                                                        <tr className="text-sm text-gray-600 border-b">
-                                                                            <th className="py-2">Date</th>
-                                                                            <th className="py-2">Principal</th>
-                                                                            <th className="py-2">Interest</th>
-                                                                            <th className="py-2">Remaining balance</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        {y.rows.map((r, idx) => (
-                                                                            <tr key={idx} className="text-sm text-gray-700">
-                                                                                <td className="py-2 border-b">{r.month}</td>
-                                                                                <td className="py-2 border-b">{r.principal}</td>
-                                                                                <td className="py-2 border-b">{r.interest}</td>
-                                                                                <td className="py-2 border-b">{r.balance}</td>
-                                                                            </tr>
-                                                                        ))}
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        )}
-                                                    </div>
-                                                );
-                                            })}
-                                        </div>
-                                    </div>
-                                </div>
-                            </>
-                        )}
-                    </div>
-                </main>
-            </div>
-        </div>
+            <section className="bg-blue px-6 py-16 text-center text-white md:px-16 md:py-20"><h2 className="text-3xl font-semibold md:text-4xl">Not Sure Which Loan Fits Your Goal?</h2><p className="mx-auto mt-4 max-w-2xl leading-7 text-white/80">Our advisors can help you understand your options and check your eligibility.</p><div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row"><Link to="/loan-eligibility" className="rounded-[3px] bg-lightBlue px-8 py-4 font-inter text-[15px] font-medium text-white hover:bg-white hover:text-blue">Check Eligibility</Link><a href="tel:8291071621" className="rounded-[3px] border border-white px-8 py-4 font-inter text-[15px] font-medium hover:bg-white hover:text-blue">Talk to Our Advisor</a></div></section>
+        </main>
     );
 };
 
 export default LoanCalculator;
-
-
-
-
-// import React, { useState } from "react";
-// import Button from "./Button";
-
-// const LoanCalculator = () => {
-//     const [activeTab, setActiveTab] = useState("personal");
-//     const [expandedYears, setExpandedYears] = useState([]);
-//     const [expandAll, setExpandAll] = useState(false);
-
-//     const years = [
-//         {
-//             year: 2025,
-//             rows: [
-//                 { month: "Oct 2025", principal: "₹408.53", interest: "₹1,146.67", balance: "₹339,591.47" },
-//                 { month: "Nov 2025", principal: "₹410.23", interest: "₹1,144.96", balance: "₹339,180.24" },
-//                 { month: "Dec 2025", principal: "₹411.94", interest: "₹1,143.26", balance: "₹338,769.31" },
-//             ],
-//         },
-//         {
-//             year: 2026,
-//             rows: [
-//                 { month: "Jan 2026", principal: "₹6,309.90", interest: "₹21,068.00", balance: "₹333,690.10" },
-//             ],
-//         },
-//         {
-//             year: 2027,
-//             rows: [
-//                 { month: "Jan 2027", principal: "₹11,648.97", interest: "₹37,631.26", balance: "₹328,351.03" },
-//             ],
-//         },
-//         {
-//             year: 2028,
-//             rows: [{ month: "Jan 2028", principal: "₹17,261.20", interest: "₹53,921.35", balance: "₹322,738.80" }],
-//         },
-//     ];
-
-//     const toggleYear = (y) => {
-//         setExpandedYears((prev) => {
-//             if (prev.includes(y)) return prev.filter((p) => p !== y);
-//             return [...prev, y];
-//         });
-//     };
-
-//     const toggleExpandAll = () => {
-//         if (!expandAll) {
-//             setExpandedYears(years.map((y) => y.year));
-//             setExpandAll(true);
-//         } else {
-//             setExpandedYears([]);
-//             setExpandAll(false);
-//         }
-//     };
-
-//     return (
-//         <div className="w-full min-h-screen bg-gray-50 px-4 md:px-8 lg:px-16 py-8">
-//             {/* Tabs - top left (underline style) */}
-//             <div className="max-w-[1200px] mx-auto">
-//                 <div className="flex border-b border-gray-300">
-//                     <button
-//                         onClick={() => setActiveTab("home")}
-//                         className={`px-4 py-3 text-sm font-medium ${activeTab === "home"
-//                             ? "text-blue border-b-4 font-inter text-base font-bold leading-7 border-lightBlue"
-//                             : "text-blue font-inter text-base font-medium hover:text-gray-800"
-//                             }`}
-//                     >
-//                         Home Loan
-//                     </button>
-//                     <button
-//                         onClick={() => setActiveTab("personal")}
-//                         className={`px-4 py-3 text-sm font-medium ${activeTab === "personal"
-//                             ? "text-blue border-b-4 font-inter text-base font-bold leading-7 border-lightBlue"
-//                             : "text-blue font-inter text-base font-medium hover:text-gray-800"
-//                             }`}
-//                     >
-//                         Personal Loan
-//                     </button>
-//                 </div>
-
-//                 {/* Main content */}
-//                 <div className="mt-6 flex flex-col lg:flex-row gap-8">
-//                     {/* Left form */}
-//                     <aside className="w-full lg:w-1/3">
-//                         <div className="bg-white rounded shadow p-6">
-//                             {/* <h3 className="text-blue font-onest font-bold text-sm leading-5 mb-3">
-//                                 {activeTab === "personal" ? "Personal Loan Amount" : "Home Loan Amount"}
-//                             </h3> */}
-
-//                             <label className="block text-blue font-onest font-bold text-sm leading-5 mb-3">
-//                                 {activeTab === "personal" ? "Personal Loan Amount" : "Home Loan Amount"}
-//                             </label>
-//                             <input
-//                                 type="text"
-//                                 placeholder={activeTab === "personal" ? "₹ 425,000" : "₹ 25,00,000"}
-//                                 className="w-full border rounded px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-200"
-//                             />
-
-//                             <label className="block text-blue font-onest font-bold text-sm leading-5 mb-3">Interest rate</label>
-//                             <div className="relative w-full">
-//                                 <input
-//                                     type="number"
-//                                     placeholder={activeTab === "personal" ? "5" : "8.5"}
-//                                     className="w-full border rounded px-3 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-blue-200"
-//                                 />
-//                                 <span className="absolute inset-y-0 right-3 flex items-center text-gray-700">%</span>
-//                             </div>
-
-//                             {/* <div className="flex items-center gap-2 mb-4">
-//                                 <input
-//                                     type="number"
-//                                     placeholder={activeTab === "personal" ? "5" : "8.5"}
-//                                     className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200"
-//                                 />
-//                                 <span className="text-gray-700 px-2">%</span>
-//                             </div> */}
-
-//                             <label className="block text-blue font-onest font-bold text-sm leading-5 mb-3">Loan tenure</label>
-//                             <select className="w-full border rounded px-3 py-2 mb-6 focus:outline-none focus:ring-2 focus:ring-blue-200">
-//                                 {activeTab === "personal" ? (
-//                                     <>
-//                                         <option>4 years</option>
-//                                         <option>5 years</option>
-//                                         <option>10 years</option>
-//                                     </>
-//                                 ) : (
-//                                     <>
-//                                         <option>10 years</option>
-//                                         <option>15 years</option>
-//                                         <option>20 years</option>
-//                                         <option>30 years</option>
-//                                     </>
-//                                 )}
-//                             </select>
-
-//                             <button className="w-full bg-lightBlue text-white py-3 rounded hover:bg-blue-800 transition">
-//                                 Apply for {activeTab === "personal" ? "Personal Loan" : "Home Loan"}
-//                             </button>
-//                         </div>
-//                     </aside>
-
-//                     {/* Right content */}
-//                     <main className="w-full lg:w-2/3">
-//                         <div className="bg-white rounded shadow p-6">
-//                             {/* header */}
-//                             <div>
-//                                 <h1 className="text-3xl font-semibold font-onest text-blue">
-//                                     EMI Calculator for{" "}
-//                                     <span className="text-lightBlue italic">
-//                                         {activeTab === "personal" ? "Personal Loan" : "Home Loan"}
-//                                     </span>
-//                                 </h1>
-//                                 <p className="text-darkGrey text-base font-onest leading-7 mt-3">
-//                                     Use our easy-to-use EMI calculator to instantly know your monthly repayment amount. Just enter your loan amount,
-//                                     interest rate, and tenure — and get a clear picture of your EMIs so you can choose the plan that fits your budget.
-//                                 </p>
-//                             </div>
-
-//                             {/* stats row */}
-//                             <div className="mt-6 border-t pt-6 px-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-left">
-//                                 <div>
-//                                     <p className="text-sm text-darkGrey font-medium mt-1">Loan EMI</p>
-//                                     <p className="text-2xl font-extrabold text-blue">₹12,566</p>
-//                                 </div>
-//                                 <div>
-//                                     <p className="text-sm text-darkGrey font-medium mt-1">Total interest payable</p>
-//                                     <p className="text-2xl font-extrabold text-blue">₹1,02,366</p>
-//                                 </div>
-//                                 <div>
-//                                     <p className="text-sm text-darkGrey font-medium mt-1">Total cost of loan</p>
-//                                     <p className="text-2xl font-extrabold text-blue">₹4,52,366</p>
-//                                 </div>
-//                                 <div>
-//                                     <p className="text-sm text-darkGrey font-medium mt-1">Payoff date</p>
-//                                     <p className="text-2xl font-extrabold text-blue">Sep 2028</p>
-//                                 </div>
-//                             </div>
-
-//                             {/* chart + legend */}
-//                             <div className="mt-6">
-//                                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-//                                     <div className="  p-4 flex flex-col items-end">
-//                                         {/* small svg chart to mimic screenshot */}
-//                                         <svg width="100%" height="240" viewBox="0 0 500 240" className="max-w-full">
-//                                             {/* grid */}
-//                                             <defs>
-//                                                 <pattern id="grid" width="50" height="40" patternUnits="userSpaceOnUse">
-//                                                     <path d="M 50 0 L 0 0 0 40" fill="none" stroke="#e6e8ec" strokeWidth="1" />
-//                                                 </pattern>
-//                                             </defs>
-//                                             <rect width="100%" height="100%" fill="url(#grid)" />
-//                                             {/* three example lines */}
-//                                             <path d="M20,200 C120,160 240,120 420,40" stroke="#1e3a8a" strokeWidth="6" fill="none" strokeLinecap="round" />
-//                                             <path d="M20,220 C120,170 240,110 420,80" stroke="#60a5fa" strokeWidth="6" fill="none" strokeLinecap="round" opacity="0.95" />
-//                                             <path d="M20,40 C120,100 240,160 420,200" stroke="#16a34a" strokeWidth="6" fill="none" strokeLinecap="round" opacity="0.95" />
-//                                         </svg>
-
-//                                         <div className="text-sm font-onest font-bold text-blue mt-3">As of April 2051</div>
-
-//                                         {/* legend */}
-//                                         <div className="w-full mt-4 space-y-3">
-//                                             <div className="flex items-center justify-between border-t-[1px] border-lightGrey py-2">
-//                                                 <div className="flex items-center justify-center gap-3">
-//                                                     <span className="w-4 h-4 rounded-full bg-lightBlue inline-block"></span>
-//                                                     <span className="text-sm font-onest font-medium leading-7">Principal paid</span>
-//                                                 </div>
-//                                                 <div className="text-sm font-semibold">₹253,362</div>
-//                                             </div>
-
-//                                             <div className="flex items-center justify-between border-t-[1px] border-lightGrey py-2">
-//                                                 <div className="flex items-center justify-center gap-3">
-//                                                     <span className="w-4 h-4 rounded-full bg-extraLightGreen inline-block"></span>
-//                                                     <span className="text-sm font-onest font-medium leading-7">Interest paid</span>
-//                                                 </div>
-//                                                 <div className="text-sm font-semibold">₹306,972</div>
-//                                             </div>
-
-//                                             <div className="flex items-center justify-between border-y-[1px] border-lightGrey py-2">
-//                                                 <div className="flex items-center justify-center gap-3">
-//                                                     <span className="w-4 h-4 rounded-full bg-blue inline-block"></span>
-//                                                     <span className="text-sm font-onest font-medium leading-7">Loan balance</span>
-//                                                 </div>
-//                                                 <div className="text-sm font-semibold">₹86,638</div>
-//                                             </div>
-//                                         </div>
-//                                     </div>
-//                                 </div>
-//                             </div>
-
-//                             {/* schedule heading + controls */}
-//                             <div className="mt-8 border-t pt-6 ">
-//                                 <div className="flex flex-col items-center justify-between">
-//                                     <div className="w-full">
-//                                         <h2 className="text-3xl font-onest leading-8 text-blue font-semibold">Schedule showing EMI payments starting from</h2>
-//                                         <p className="text-darkGrey font-onest font-medium text-sm mt-2">This table lists how much principal and interest are paid in each scheduled EMI payment.</p>
-//                                     </div>
-
-//                                     {/* <div className="flex items-center gap-6">
-//                                         <div className="flex items-center gap-3">
-//                                             <div className="text-sm text-gray-600">First payment</div>
-//                                             <div className="border rounded px-3 py-2 text-sm">Sep 2025</div>
-//                                             <div className="text-sm mx-2">→</div>
-//                                             <div className="text-sm text-gray-600">Last payment</div>
-//                                             <div className="text-lg font-semibold ml-2">Sep 2055</div>
-//                                         </div>
-
-//                                         <div className="flex items-center gap-2">
-//                                             <label className="text-sm text-gray-600 mr-2">Expand all years</label>
-//                                             <input
-//                                                 type="checkbox"
-//                                                 checked={expandAll}
-//                                                 onChange={toggleExpandAll}
-//                                                 className="w-5 h-5"
-//                                             />
-//                                         </div>
-//                                     </div> */}
-
-//                                     <div className="flex items-center justify-between w-full mt-6">
-//                                         {/* Left side - First & Last payment */}
-//                                         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-3">
-//                                             {/* First Payment */}
-//                                             <div className="flex flex-col items-start w-full sm:w-auto">
-//                                                 <div className="text-sm text-blue font-onest font-bold">First payment</div>
-//                                                 <div className="relative w-full sm:w-auto">
-//                                                     <input
-//                                                         type="text"
-//                                                         value="Sep 2025"
-//                                                         readOnly
-//                                                         className="border font-onest font-medium text-blue rounded px-3 py-2 text-sm pr-10 w-full sm:w-auto focus:outline-none"
-//                                                     />
-//                                                     {/* Calendar Icon */}
-//                                                     <span className="absolute inset-y-0 right-3 flex items-center">
-//                                                         <svg
-//                                                             xmlns="http://www.w3.org/2000/svg"
-//                                                             className="w-5 h-5 text-blue-500"
-//                                                             fill="none"
-//                                                             viewBox="0 0 24 24"
-//                                                             stroke="currentColor"
-//                                                         >
-//                                                             <path
-//                                                                 strokeLinecap="round"
-//                                                                 strokeLinejoin="round"
-//                                                                 strokeWidth={2}
-//                                                                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-//                                                             />
-//                                                         </svg>
-//                                                     </span>
-//                                                 </div>
-//                                             </div>
-
-//                                             {/* Arrow (hidden on small screens) */}
-//                                             <div className="hidden sm:block text-sm mx-2">→</div>
-
-//                                             {/* Last Payment */}
-//                                             <div className="flex flex-col items-start w-full sm:w-auto">
-//                                                 <div className="text-sm text-blue font-onest font-bold">Last payment</div>
-//                                                 <div className="text-lg sm:text-2xl font-bold text-blue">Sep 2055</div>
-//                                             </div>
-//                                         </div>
-
-
-//                                         {/* Right side - Toggle */}
-//                                         <div className="flex items-center gap-2">
-//                                             <label className="text-sm font-bold text-blue">Expand all years</label>
-//                                             <button
-//                                                 onClick={toggleExpandAll}
-//                                                 className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors ${expandAll ? "bg-blue-600" : "bg-gray-400"
-//                                                     }`}
-//                                             >
-//                                                 <div
-//                                                     className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform ${expandAll ? "translate-x-5" : "translate-x-0"
-//                                                         }`}
-//                                                 ></div>
-//                                             </button>
-//                                         </div>
-//                                     </div>
-
-//                                 </div>
-
-//                                 {/* schedule table (expandable years) */}
-//                                 <div className="mt-6">
-//                                     <div className="bg-white rounded overflow-hidden">
-//                                         <div className="divide-y">
-//                                             {years.map((y) => {
-//                                                 const isOpen = expandedYears.includes(y.year);
-//                                                 return (
-//                                                     <div key={y.year}>
-//                                                         <div
-//                                                             className="flex items-center justify-between px-4 py-3 bg-gray-50 cursor-pointer"
-//                                                             onClick={() => toggleYear(y.year)}
-//                                                         >
-//                                                             <div className="flex items-center gap-4">
-//                                                                 <div className="text-sm text-blue-700 font-semibold">+ {y.year}</div>
-//                                                                 <div className="text-sm text-gray-600">Year summary / total</div>
-//                                                             </div>
-//                                                             <div className="text-sm text-gray-700">{isOpen ? "Collapse" : "Expand"}</div>
-//                                                         </div>
-
-//                                                         {isOpen && (
-//                                                             <div className="px-4 py-3">
-//                                                                 <table className="w-full text-left">
-//                                                                     <thead>
-//                                                                         <tr className="text-sm text-gray-600 border-b">
-//                                                                             <th className="py-2">Date</th>
-//                                                                             <th className="py-2">Principal</th>
-//                                                                             <th className="py-2">Interest</th>
-//                                                                             <th className="py-2">Remaining balance</th>
-//                                                                         </tr>
-//                                                                     </thead>
-//                                                                     <tbody>
-//                                                                         {y.rows.map((r, idx) => (
-//                                                                             <tr key={idx} className="text-sm text-gray-700">
-//                                                                                 <td className="py-2 border-b">{r.month}</td>
-//                                                                                 <td className="py-2 border-b">{r.principal}</td>
-//                                                                                 <td className="py-2 border-b">{r.interest}</td>
-//                                                                                 <td className="py-2 border-b">{r.balance}</td>
-//                                                                             </tr>
-//                                                                         ))}
-//                                                                     </tbody>
-//                                                                 </table>
-//                                                             </div>
-//                                                         )}
-//                                                     </div>
-//                                                 );
-//                                             })}
-//                                         </div>
-//                                     </div>
-//                                 </div>
-//                             </div>
-
-//                         </div> {/* end right white card */}
-//                     </main>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default LoanCalculator;
