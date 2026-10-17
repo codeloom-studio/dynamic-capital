@@ -74,11 +74,16 @@ Object.entries(pages).forEach(([route, metadata]) => {
 
     html = replaceTag(html, /<title>[^<]*<\/title>/, `<title>${title}</title>`);
     html = replaceTag(html, /<meta name="description"[^>]*>/, `<meta name="description" content="${description}" />`);
+    html = html.replace(/\s*<meta name="keywords"[^>]*>/, '');
     html = replaceTag(html, /<meta property="og:title"[^>]*>/, `<meta property="og:title" content="${title}" />`);
     html = replaceTag(html, /<meta property="og:description"[^>]*>/, `<meta property="og:description" content="${description}" />`);
+    html = replaceTag(html, /<meta property="og:image"[^>]*>/, `<meta property="og:image" content="${siteUrl}/share-image.png" />`);
+    html = replaceTag(html, /<meta property="og:image:width"[^>]*>/, '<meta property="og:image:width" content="1200" />');
+    html = replaceTag(html, /<meta property="og:image:height"[^>]*>/, '<meta property="og:image:height" content="630" />');
     html = replaceTag(html, /<meta property="og:url"[^>]*>/, `<meta property="og:url" content="${canonicalUrl}" />`);
     html = replaceTag(html, /<meta name="twitter:title"[^>]*>/, `<meta name="twitter:title" content="${title}" />`);
     html = replaceTag(html, /<meta name="twitter:description"[^>]*>/, `<meta name="twitter:description" content="${description}" />`);
+    html = replaceTag(html, /<meta name="twitter:image"[^>]*>/, `<meta name="twitter:image" content="${siteUrl}/share-image.png" />`);
     html = html.replace('</head>', `    <link rel="canonical" href="${canonicalUrl}" />\n</head>`);
 
     const outputDirectory = route === '/' ? buildDirectory : path.join(buildDirectory, route.slice(1));

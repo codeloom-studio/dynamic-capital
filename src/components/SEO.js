@@ -6,8 +6,7 @@ const SITE_URL = 'https://www.dynamiccapital.in';
 const SEO = ({
     title = 'Dynamic Capital - Your Trusted Financial Partner',
     description = 'Dynamic Capital offers comprehensive financial solutions including personal loans, home loans, car loans, business loans, and education loans with quick approvals and competitive rates.',
-    keywords = 'loans, personal loan, home loan, car loan, business loan, education loan, financial services, dynamic capital, loan approval, competitive rates',
-    image = `${SITE_URL}/assets/logo.svg`,
+    image = `${SITE_URL}/share-image.png`,
     url = window.location.href,
     type = 'website',
     schemaData = null,
@@ -84,22 +83,23 @@ const SEO = ({
         updateMeta('meta[name="description"]', description);
         updateMeta('meta[property="og:title"]', title);
         updateMeta('meta[property="og:description"]', description);
+        updateMeta('meta[property="og:image"]', imageUrl);
         updateMeta('meta[property="og:url"]', canonicalUrl);
         updateMeta('meta[name="twitter:title"]', title);
         updateMeta('meta[name="twitter:description"]', description);
+        updateMeta('meta[name="twitter:image"]', imageUrl);
 
         const canonical = document.head.querySelector('link[rel="canonical"]');
         if (canonical) {
             canonical.setAttribute('href', canonicalUrl);
         }
-    }, [canonicalUrl, description, title]);
+    }, [canonicalUrl, description, imageUrl, title]);
 
     return (
         <Helmet>
             {/* Basic Meta Tags */}
             <title>{title}</title>
             <meta name="description" content={description} />
-            <meta name="keywords" content={keywords} />
             <meta name="robots" content="index, follow" />
             <meta name="author" content="Dynamic Capital" />
             <link rel="canonical" href={canonicalUrl} />
@@ -109,6 +109,8 @@ const SEO = ({
             <meta property="og:title" content={title} />
             <meta property="og:description" content={description} />
             <meta property="og:image" content={imageUrl} />
+            <meta property="og:image:width" content="1200" />
+            <meta property="og:image:height" content="630" />
             <meta property="og:image:alt" content="Dynamic Capital financial services" />
             <meta property="og:url" content={canonicalUrl} />
             <meta property="og:site_name" content="Dynamic Capital" />
