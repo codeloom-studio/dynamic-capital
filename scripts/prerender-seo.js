@@ -1,5 +1,7 @@
 const fs = require('fs');
+const http = require('http');
 const path = require('path');
+const puppeteer = require('puppeteer');
 
 const buildDirectory = path.resolve(__dirname, '..', 'build');
 const templatePath = path.join(buildDirectory, 'index.html');
@@ -91,4 +93,79 @@ Object.entries(pages).forEach(([route, metadata]) => {
     fs.writeFileSync(path.join(outputDirectory, 'index.html'), html);
 });
 
-console.log(`Generated SEO entry HTML for ${Object.keys(pages).length} routes.`);
+const getFilePath = (requestPath) => {
+    const normalizedPath = decodeURIComponent(requestPath.split('?')[0]);
+    const directPath = path.resolve(buildDirectory, `.${normalizedPath}`);
+    const requestedPath = normalizedPath.endsWith('/')
+        ? `${normalizedPath}index.html`
+        : `${normalizedPath}/index.html`;
+    const filePath = fs.existsSync(directPath) && fs.statSync(directPath).isFile()
+        ? directPath
+        : path.resolve(buildDirectory, `.${requestedPath}`);
+    return filePath.startsWith(`${buildDirectory}${path.sep}`) || filePath === buildDirectory
+        ? filePath
+        : null;
+};
+
+const startStaticServer = () => new Promise((resolve) => {
+    const server = http.createServer((request, response) => {
+        const filePath = getFilePath(request.url || '/');
+        if (!filePath || !fs.existsSync(filePath) || !fs.statSync(filePath).isFile()) {
+            response.writeHead(404);
+            response.end('Not found');
+            return;
+        }
+
+        const extension = path.extname(filePath);
+        const contentTypes = {
+            '.css': 'text/css',
+            '.html': 'text/html',
+            '.js': 'application/javascript',
+            '.json': 'application/json',
+            '.png': 'image/png',
+            '.svg': 'image/svg+xml'
+        };
+        response.writeHead(200, { 'Content-Type': contentTypes[extension] || 'application/octet-stream' });
+        fs.createReadStream(filePath).pipe(response);
+    });
+
+    server.listen(0, '127.0.0.1', () => resolve(server));
+});
+
+const prerenderPages = async () => {
+    const server = await startStaticServer();
+    const address = server.address();
+    const baseUrl = `http://127.0.0.1:${address.port}`;
+    const browser = await puppeteer.launch({ headless: true });
+
+    try {
+        for (const route of Object.keys(pages)) {
+            const page = await browser.newPage();
+            const response = await page.goto(`${baseUrl}${route}`, { waitUntil: 'networkidle0' });
+            if (!response || !response.ok()) {
+                throw new Error(`Could not load ${route} during prerendering.`);
+            }
+
+            await page.waitForSelector('#root > *');
+            const rootContentLength = await page.$eval('#root', (root) => root.innerHTML.length);
+            const html = await page.content();
+            if (rootContentLength === 0) {
+                throw new Error(`React content did not render for ${route}.`);
+            }
+
+            const outputDirectory = route === '/' ? buildDirectory : path.join(buildDirectory, route.slice(1));
+            fs.writeFileSync(path.join(outputDirectory, 'index.html'), html);
+            await page.close();
+        }
+    } finally {
+        await browser.close();
+        await new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
+    }
+};
+
+prerenderPages()
+    .then(() => console.log(`Prerendered React content for ${Object.keys(pages).length} routes.`))
+    .catch((error) => {
+        console.error(error);
+        process.exitCode = 1;
+    });
